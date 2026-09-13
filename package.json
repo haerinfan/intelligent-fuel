@@ -14,8 +14,8 @@
     "start": "node --env-file=.env dist/src/server.js",
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
-    "lint": "biome check src scripts tests package.json tsconfig.json tsconfig.build.json biome.json",
-    "format": "biome check --write src scripts tests package.json tsconfig.json tsconfig.build.json biome.json",
+    "lint": "biome check src scripts tests public/app.js package.json tsconfig.json tsconfig.build.json biome.json",
+    "format": "biome check --write src scripts tests public/app.js package.json tsconfig.json tsconfig.build.json biome.json",
     "test": "tsx --test tests/*.test.ts",
     "fixtures:check": "tsx scripts/check-fixtures.ts",
     "check": "npm run lint && npm run typecheck && npm test && npm run fixtures:check && npm run build"
