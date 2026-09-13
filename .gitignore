@@ -1,0 +1,19 @@
+# Credentials and private/local data
+.env
+.env.*
+!.env.example
+secrets/
+private-data/
+participant-data/
+*.key
+*.pem
+
+# Future local build artifacts
+node_modules/
+.venv/
+__pycache__/
+dist/
+build/
+coverage/
+.DS_Store
+Thumbs.db
