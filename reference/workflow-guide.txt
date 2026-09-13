@@ -1,1 +1,497 @@
+Intelligent Fuel Web App
 
+Complete Web App Workflow and Screen Guide
+
+This document explains how the web application should work from the user’s point of view. It is not a research proposal and does not define the final machine-learning algorithm. Its purpose is to serve as the main reference before designing the UI mockups.
+
+CORE IDEA: A driver selects a vehicle, enters a trip, chooses the fuel brand they normally use, and lets the system analyze available routes. The web app predicts a realistic fuel-consumption range, estimates trip cost using current fuel-price data, recommends the most practical route, saves the trip analysis, and then hands turn-by-turn navigation to Google Maps.
+
+1. Core User Experience
+
+The product should feel like a fuel-intelligence layer on top of normal navigation, not another Google Maps or Waze clone.
+
+Main user journey
+
+1.  Sign up or log in.
+
+2.  Add or select a vehicle.
+
+3.  Enter the starting point and destination.
+
+4.  Choose the fuel brand normally used.
+
+5.  Press Analyze Trip.
+
+6.  The system retrieves route and traffic information.
+
+7.  The prediction system estimates fuel consumption for each route.
+
+8.  Current fuel-price data is used to estimate peso cost.
+
+9.  The system recommends one Smart Recommended Route and still shows alternatives.
+
+10.  The user can open the selected route in Google Maps for turn-by-turn navigation.
+
+11.  The trip analysis is saved in history.
+
+12.  On a future visit, the user may optionally confirm that the trip was taken and add reliable actual fuel-consumption data.
+
+OUR APP: Handles vehicle selection, fuel prediction, fuel-cost estimation, route comparison, recommendation, and trip history.
+
+GOOGLE MAPS: Handles turn-by-turn navigation after the user chooses a route. Our web app does not need to track every turn.
+
+2. Account and First-Time Setup
+
+Users should have accounts because the system benefits from remembering saved vehicles, preferred fuel brands, previous route analyses, and trip history.
+
+First-time user flow
+
+Create account / log in
+
+Add first vehicle
+
+Optionally save preferred fuel brand
+
+Go directly to the trip planner
+
+A user should not be forced to complete unnecessary profile information before planning a trip.
+
+3. Vehicle Setup and My Garage
+
+The vehicle setup should be low-friction. Users should not normally type engine displacement, fuel type, transmission, or km/L manually if the system already has those details in its vehicle database.
+
+Two ways to find a vehicle
+
+Option A - Search your vehicle: A large search field appears at the top. Example search: “Toyota Vios 2024”. Live suggestions show matching models, years, and variants. The user selects the correct result.
+
+Example live suggestions:
+
+Toyota Vios 2024 1.3 J M/T
+
+Toyota Vios 2024 1.3 XE CVT
+
+Toyota Vios 2024 1.3 XLE CVT
+
+Toyota Vios 2024 1.5 G CVT
+
+Option B - Browse vehicles: For users who do not know the exact model or variant, the app offers guided filters.
+
+Brand: Toyota, Honda, Mitsubishi, Nissan, Ford, Suzuki, Hyundai, Kia, Yamaha, etc.
+
+Vehicle Type: Sedan, SUV, Hatchback, MPV, Pickup, Van, Motorcycle, etc. This is optional and acts as a filter.
+
+Model
+
+Year
+
+Variant
+
+Automatic vehicle information
+
+After the correct vehicle variant is selected, the system automatically loads usable specifications from the vehicle database, such as:
+
+Vehicle class or type
+
+Engine displacement
+
+Fuel type
+
+Transmission
+
+Model year and variant
+
+Rated fuel economy only when a reliable value is available
+
+Other useful technical values available for the selected model
+
+The user does not need to understand these technical values. They are primarily system inputs.
+
+Vehicle database scale
+
+The data structure should be capable of supporting 500 or more vehicle variants. The first prototype can begin with selected commonly used Philippine vehicles and expand later.
+
+If the vehicle is not found
+
+Show a simple “Can’t find your vehicle?” option. A limited manual fallback can collect only the minimum information needed instead of blocking the user.
+
+My Garage
+
+Saved vehicles are stored under My Garage so the user can reuse them on future trips. The user may add multiple vehicles and select a default vehicle.
+
+4. Fuel Brand and Current Fuel Pricing
+
+Fuel Brand should be a normal trip input because fuel prices differ among brands and can also vary by station and location.
+
+Fuel Brand field
+
+The trip planner includes a searchable/selectable Fuel Brand field. Example supported brands may include:
+
+Shell
+
+Petron
+
+Caltex
+
+Unioil
+
+Seaoil
+
+Flying V
+
+Cleanfuel
+
+TotalEnergies
+
+Phoenix
+
+PTT
+
+Jetti
+
+Other supported Philippine fuel brands
+
+The system may remember the user’s preferred fuel brand and preselect it on future trips. The user can still change it at any time.
+
+What Fuel Brand affects
+
+Fuel consumption: The selected brand should not change the predicted number of liters consumed unless future research provides a defensible reason to model that difference.
+
+Fuel cost: The selected brand directly affects the peso estimate because the system multiplies predicted liters by the current usable fuel price for that brand and fuel type.
+
+Location-aware pricing
+
+Fuel brand alone is not enough for perfect pricing because pump prices can differ across stations and cities. The system should therefore use the best available price in this order:
+
+1.  Exact or nearby selected-brand station price when reliable data is available.
+
+2.  Selected-brand price for the relevant city or area.
+
+3.  Selected-brand regional or broader average.
+
+4.  General fallback price if more specific data is unavailable.
+
+Whenever the system uses a fallback or average, the UI should clearly label the cost as an estimate and show when the price was last updated.
+
+Fuel type and grade
+
+The saved vehicle should already tell the system whether the vehicle uses gasoline or diesel. If a vehicle can use multiple gasoline grades, the user may be allowed to choose the grade they normally buy.
+
+5. Dashboard / Home Screen
+
+The dashboard should immediately answer one question: “Where are you going?” The trip planner is the primary feature. Analytics should remain secondary.
+
+Main trip planner
+
+From
+
+Destination
+
+Vehicle
+
+Fuel Brand
+
+Analyze Trip button
+
+Supporting dashboard information
+
+Current selected vehicle
+
+Preferred fuel brand
+
+Fuel-price snapshot and last updated time
+
+Latest 5 trips
+
+View All Trips link
+
+My Garage shortcut
+
+Add Vehicle shortcut
+
+The user should be able to change the vehicle or fuel brand directly from the trip-planning area without navigating to another page.
+
+6. Analyze Trip Process
+
+After the user presses Analyze Trip, the technical work happens in the background. The interface should focus on useful results rather than exposing the full pipeline.
+
+System process
+
+1.  Retrieve alternative routes and traffic-aware route information.
+
+2.  Load the saved specifications for the selected vehicle.
+
+3.  Prepare the route and vehicle information needed by the prediction system.
+
+4.  Estimate fuel consumption for every available route.
+
+5.  Retrieve the current usable price for the selected fuel brand, fuel type, and location.
+
+6.  Convert predicted liters into an estimated peso cost.
+
+7.  Compare the routes and select one Smart Recommended Route.
+
+8.  Show alternative routes for transparency and user choice.
+
+7. Route Results Screen
+
+This is one of the most important screens in the entire product.
+
+Smart Recommended Route
+
+One route receives the main recommendation. The user does not choose Fastest, Balanced, or Fuel Saver beforehand. The system makes the recommendation itself.
+
+The recommended route should show:
+
+Map preview
+
+Route name or identifying streets, when useful
+
+Distance
+
+Traffic-aware travel time
+
+Likely fuel-consumption range
+
+Expected fuel-consumption value
+
+Estimated fuel-cost range
+
+Expected fuel cost
+
+Fuel brand and price used
+
+Short explanation of why this route was recommended
+
+Open in Google Maps button
+
+Fuel prediction presentation
+
+Avoid fake precision. The user-facing result should communicate uncertainty instead of claiming an exact future value.
+
+Example: Likely fuel consumption: 2.3-2.7 L. Expected: approximately 2.5 L.
+
+Example cost: Estimated fuel cost: ₱180-₱210. Expected: approximately ₱195.
+
+The final method for calculating the prediction range belongs to the later machine-learning implementation discussion.
+
+Alternative routes
+
+Alternative routes appear below the recommended route. Each should show the same core measurements so the user can compare them fairly.
+
+Distance
+
+Travel time
+
+Fuel-consumption range
+
+Estimated cost
+
+Simple comparison against the recommended route, such as “+7 min, about ₱18 less”
+
+Why this route?
+
+The interface should provide a short, plain-language explanation. Example: “Recommended because it is expected to reduce fuel use without adding a significant amount of travel time.” The exact recommendation scoring method will be defined separately.
+
+8. Open in Google Maps
+
+The web app does not need to provide turn-by-turn navigation.
+
+After choosing the recommended route or another route, the user presses Open in Google Maps. The web app passes the trip destination and, when practical, route-defining information so Google Maps can open the intended route. Google Maps then handles actual navigation.
+
+Important: It is normal for the user to leave the web app after this point. The web app has already completed its main job: fuel prediction, cost estimation, route comparison, and recommendation.
+
+9. Saving the Trip
+
+Before or when the user opens a route in Google Maps, save the analysis as a Planned Trip.
+
+The saved trip should include:
+
+Origin
+
+Destination
+
+Selected vehicle
+
+Selected fuel brand
+
+Fuel price used and update time
+
+Recommended route
+
+Route selected by the user
+
+Predicted fuel range and expected value
+
+Estimated cost range and expected value
+
+Travel time and distance
+
+Date and time of the analysis
+
+10. Trip History
+
+Do not limit the database to only a small number of trips. Store all useful trip records unless a future retention policy says otherwise.
+
+Dashboard
+
+Show only the 5 most recent trips so the dashboard remains clean.
+
+Full Trip History page
+
+The full history page can show all saved trips with filters such as:
+
+Date
+
+Vehicle
+
+Destination
+
+Planned / Taken / Not Taken
+
+Has actual fuel data / No actual fuel data
+
+11. What Happens After the Trip
+
+Because navigation happens in Google Maps, our web app should not pretend that it knows the exact moment a trip is finished.
+
+Returning-user prompt
+
+On a future visit, the system can show the recent planned trip and ask:
+
+Did you take this trip? Yes / No / Dismiss
+
+If the user chooses Yes, the trip can be marked as taken. If the user chooses No, it remains a planned trip that was not completed.
+
+Actual fuel consumption is optional
+
+Most drivers will not know an exact fuel-consumption number after every trip. Therefore, adding actual fuel used must be optional.
+
+If the user has a reliable measurement, show:
+
+Add Actual Fuel Used: Enter the measured liters consumed for this trip.
+
+If the user does not have reliable data, they simply skip it. A normal user can use the system, receive a prediction, open Google Maps, and never return to enter an actual value.
+
+A completed trip without measured fuel data is still useful as user history, but it should not automatically become a trusted machine-learning training label.
+
+12. Returning User Experience
+
+A returning user should be able to plan another trip with very little setup.
+
+1.  Log in.
+
+2.  The dashboard automatically shows the default vehicle and preferred fuel brand.
+
+3.  Enter From and Destination.
+
+4.  Change vehicle or fuel brand only if needed.
+
+5.  Analyze Trip.
+
+6.  Review Smart Recommended Route and alternatives.
+
+7.  Open the chosen route in Google Maps.
+
+8.  Trip is saved automatically.
+
+13. Main Screens to Design
+
+These are the primary screens for the first UI mockup pass.
+
+Highest priority
+
+Dashboard / Trip Planner - From, Destination, Vehicle, Fuel Brand, Analyze Trip
+
+Add Vehicle - Search - searchable “Toyota Vios 2024” field with live suggestions
+
+Add Vehicle - Browse - Brand > optional Type > Model > Year > Variant
+
+Route Analysis / Results - map, recommendation, prediction range, cost, alternatives
+
+Google Maps handoff state - clear Open in Google Maps CTA and trip saving
+
+Next priority
+
+My Garage
+
+Trip History
+
+Trip Details
+
+Returning trip confirmation
+
+Optional Add Actual Fuel Used
+
+Profile / Settings
+
+Later / admin
+
+Vehicle database management
+
+Fuel-price data monitoring
+
+Trip-record review
+
+Machine-learning model performance and dataset tools
+
+14. Important UX Rules
+
+Do not require users to manually know technical vehicle specifications when the database already has them.
+
+Do not make users select Fastest, Balanced, or Fuel Saver before analysis.
+
+Do not claim an exact future fuel-consumption number when uncertainty exists.
+
+Show a likely range plus an expected value.
+
+Show the fuel brand and price basis used in the cost estimate.
+
+Always show when fuel-price information was last updated.
+
+Do not pretend the web app knows when the Google Maps trip has ended.
+
+Do not require actual fuel input after every trip.
+
+Keep the main dashboard centered on planning a trip, not analytics.
+
+Still show alternative routes even when the system recommends one route.
+
+15. Final Master Flow
+
+1.  LOGIN / SIGN UP - User enters the product.
+
+2.  ADD OR SELECT VEHICLE - Search the vehicle directly or browse by brand, optional type, model, year, and variant. Specs load automatically.
+
+3.  PLAN TRIP - Enter From, Destination, Vehicle, and Fuel Brand.
+
+4.  ANALYZE - Retrieve route and traffic information, load vehicle data, predict fuel use, and retrieve the current usable fuel price.
+
+5.  SMART RECOMMENDATION - Show one recommended route plus alternatives and a short explanation.
+
+6.  SHOW RANGE AND COST - Display likely liters, expected liters, estimated cost range, expected cost, fuel brand, and price freshness.
+
+7.  OPEN IN GOOGLE MAPS - Hand off actual navigation.
+
+8.  SAVE PLANNED TRIP - Keep route, vehicle, fuel brand, price, prediction, distance, time, and timestamp.
+
+9.  OPTIONAL RETURN - Ask whether the trip was taken. Allow actual fuel entry only if the user has a reliable measurement.
+
+10.  HISTORY - Show the latest 5 trips on the dashboard and retain the complete history on a separate page.
+
+16. Intentionally Deferred for Later Discussion
+
+The following areas are important but should not be locked into this web-app workflow document yet:
+
+Exact Smart Recommendation algorithm
+
+Machine-learning model choice and training implementation
+
+Final dataset collection and validation methodology
+
+Exact statistical method for generating prediction ranges
+
+Final fuel-price API / scraping architecture
+
+Exact supported vehicle count and vehicle-data ingestion process
+
+These can be designed separately after the user flow and interface structure are finalized.
