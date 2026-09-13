@@ -1,6 +1,21 @@
 # Milestone backlog
 
-No application work has begun. Milestones are dependency ordered, not promised dates; the thesis deadline is open in D16. Every implementation task must name its acceptance IDs and evidence. Agents may work in parallel only across independent items with clear ownership.
+Updated 13 September 2026: fixture journey implemented, targeting approximately 12 October submission. The original table records the initial planning baseline; the current progress table below supersedes its old statuses. Every task needs acceptance IDs and evidence; parallel work requires separate ownership.
+
+## Current progress
+
+| Item | Status | Evidence / remaining work |
+|---|---|---|
+| M1.1 Thesis scope | Partly complete | Cavite, one-month deadline and required ML confirmed; rubric/budget remain open |
+| M1.2 Environment | Complete locally | Reproducible setup/check/dev, SQLite migrations, maintained auth and local-only server |
+| M1.3 Data spike | Partly complete | Actual VED sample audited; usable labels/static join and local price publication still unresolved |
+| M1.4 Fixture interfaces | Complete for M2 | Contract 0.2.0, manual unknowns/compatibility/integrity, lead ownership |
+| M2.1–M2.4 Fixture journey | Implemented and checked | See acceptance-run.md; no live provider or ML claim |
+| M2.5 Review | Lead verification complete; independent sign-off pending | Specialist usage limit interrupted independent final review; friend can review this PR |
+| Collaboration setup | Files ready | CONTRIBUTING, PR template, CI; invite and branch-rule enforcement require remote completion |
+| Next research task | Ready to assign | Investigate VED fuel-label semantics and static features, then decide protocol with adviser; see ml-data-audit.md |
+
+M3–M5 remain unimplemented. The completed demo does not satisfy the ML submission requirement by itself.
 
 ## Implementation gate
 

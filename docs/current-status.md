@@ -1,33 +1,27 @@
 # Current implementation status
 
-Updated 13 September 2026 for the first GitHub sync. This page and README supersede historical documentation-only statements in the foundation documents. The project is an in-progress thesis prototype, not a completed application.
+Updated 13 September 2026. This page supersedes historical foundation-only statements. The local fixture journey is implemented; the thesis and live/ML validation are not complete.
 
-## Confirmed scope
+## Ready locally
 
-The user requires a machine-learning component, an initial Cavite study area, and delivery in about one month from 12 September (planning deadline 12 October 2026). Philippines-wide expansion is a later goal. The exact thesis research question, rubric, participant/data access and budget remain open.
+- Maintained email/password authentication, per-database rate limiting and cookie sessions.
+- Responsive planner, searchable/browsable synthetic catalog, manual fallback, multiple saved vehicles and explicit defaults.
+- Validated resolved demo locations, synthetic routes/prices/estimates, exact decimal cost, and unavailable/stale/ranged/general-fallback states.
+- Private per-user garage, analyses and trips; transactional idempotent saves, selection conflicts and analysis expiry.
+- Immutable historical vehicle, price, estimate and recommendation snapshots, latest-five/full history, and save-before-Maps handoff. Same-tab Maps link and browser Back; fictional alternatives are not real Google geometry.
+- Input changes discard old pending responses. Demo controls exercise delay, save failure and textual map fallback.
+- Contract 0.2.0 fixes manual unknowns, quote compatibility and saved-snapshot integrity.
 
-## Implemented and verified
+Run `npm ci`, `npm run setup`, `npm run check`, then `npm run dev`. Open `http://127.0.0.1:3000`. Credentials and SQLite stay local and ignored. The browser uses native HTML/CSS/ES modules against the TypeScript API; no second frontend server or build is required.
 
-- Node 24 / TypeScript / Fastify API scaffold and health endpoint.
-- Better Auth email/password sessions backed by local SQLite, with two generated synthetic development accounts.
-- Loopback-only development configuration and ignored credentials/database files.
-- Runtime schemas, decimal fuel-cost calculations, 11 synthetic scenarios and seven history fixtures.
-- Lint, typecheck, 19 tests, fixture validation and production compilation passed on 13 September 2026.
+## Verification and collaboration
 
-These checks cover component behavior, including real auth sessions, malformed requests, arithmetic, unavailable data and fixture snapshots. They do not establish full user-journey acceptance, private garage/trip ownership enforcement or empirical fuel accuracy.
+24 tests pass, plus lint, types, 11 fixture scenarios and build. See [acceptance evidence](acceptance-run.md) for desktop/360px, keyboard, delayed responses and actual Maps navigation. These are local fixture measurements, not live-provider performance guarantees.
 
-## Pending work and review findings
+Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are included. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files. Check CI execution on the submitted revision.
 
-M1 is in progress. Before treating the shared contract as frozen, address these independent review findings:
+## Research and remaining scope
 
-1. A minimal manual vehicle needs a snapshot representation that permits unknown catalog fields instead of requiring invented brand/year/variant values.
-2. Saved-trip schema validation must enforce the same route uniqueness, recommendation, embedded-quote references and fuel/cost consistency as analysis validation.
-3. Analysis validation must check fuel/grade/brand compatibility between vehicle, selection and quote, with an explicit general-fallback exception.
+Cavite first; approximately 12 October 2026 submission; ML required. The [actual VED sample audit](ml-data-audit.md) found sparse/zero fuel-rate data: this is not training-ready. Next inspect label semantics and static-feature mapping; D08–D11 stay unresolved. No trained model or live provider is connected. A fixture demo alone does not satisfy the ML thesis requirement.
 
-The browser interface, garage/trip storage endpoints, saved-trip idempotency, Maps handoff and complete AC01–AC18 journey are not implemented. The 26-scenario fixture inventory is a proposed review checklist; only the 11 scenarios listed by npm run fixtures:check are executable today. Auth-generated user IDs and fixture owner aliases are not yet joined by application repositories.
-
-## Immediate next steps
-
-Resolve the contract review findings and finish the first authenticated trip journey. In parallel, follow the [ML critical path](ml-plan.md): inspect a real labeled sample and prediction-time feature mapping by the proposed 15 September data gate. A fixture-only final demo does not satisfy the user's ML requirement. Model, dataset, score and interval methods remain unresolved until evidence supports a recorded choice.
-
-The original decision log/backlog remain useful planning records; their initial statuses are historical where this page records later implementation. No live-provider account, billable request, participant data collection or model training has been performed.
+Physical mobile testing, participant consent/retention, verified email/recovery, hosting, live pricing/routing permissions, status/measurement collection and held-out ML evaluation remain future gates. Use fictional local accounts. Earlier foundation snapshots were documentation milestones; this work does not retroactively claim they were tested.

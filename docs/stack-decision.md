@@ -2,7 +2,11 @@
 
 Decision date: 12 September 2026. The user authorized the next setup step and confirmed Cavite as the initial area, about one month to delivery (planning date 12 October 2026), and a required machine-learning component. Philippines-wide coverage is an expansion goal, not the first evaluation claim.
 
-## Selected local development stack
+## M2 update, 13 September 2026
+
+The browser is now native HTML/CSS/ES modules, served by Fastify from `public`. This supersedes the planned React row below: the one-month prototype needs one server, no added frontend build and a small shared HTTP interface. API/tests remain TypeScript; browser JavaScript is included in Biome checks. CI uses the pinned `.nvmrc` version; the latest local run used Node 24.20.0. Better Auth rate limits use each SQLite database, preventing cross-test memory limits and retaining limits across local restarts. Rerun setup for auth migrations.
+
+## Selected local development stack (M1 record)
 
 | Layer | Choice | Reason / scope |
 |---|---|---|

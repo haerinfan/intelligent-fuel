@@ -1,6 +1,6 @@
 # First complete trip-planning journey acceptance criteria
 
-Defined before implementation on 2026-09-12. Status of every behavioral criterion: **NOT RUN — no application exists yet**. This is the M2 workflow-demo gate, not proof of research validity. Requirements FR/NFR are in requirements.md.
+Defined before implementation on 2026-09-12. Current results are in [acceptance-run.md](acceptance-run.md); the original criteria are retained below. This is the M2 fixture workflow gate, not proof of research validity. Requirements FR/NFR are in requirements.md. The map is an explicitly illustrative schematic; handoff saves first, then exposes a same-tab Maps link. Physical mobile verification stays in M3.
 
 ## Test setup
 

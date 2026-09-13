@@ -1,6 +1,16 @@
 # Decision and uncertainty log
 
-Only D01 is confirmed by the user. Other entries are proposed defaults, unresolved choices or intentionally deferred research. A proposal can guide a reversible prototype design but is not adviser approval. To resolve an entry, record date, evidence, alternatives and consequence; do not erase its history.
+D01 and the scope updates below are confirmed by the user. The original table is preserved as decision history. A prototype design choice is not adviser approval; record evidence and consequences rather than erasing unresolved research decisions.
+
+## Adopted updates, 13 September 2026
+
+- D02: Cavite first, Philippine expansion later, as confirmed by the user.
+- D16: Approximately 12 October submission and an ML component required. Research question, rubric and budget still open.
+- D04/D18: Local Fastify/TypeScript/SQLite/Better Auth application; browser uses native HTML/CSS/ES modules. This replaces the unadopted React proposal to keep one server/build and avoid extra tooling for the one-month prototype. Hosting, email verification/recovery and participant access remain later gates.
+- D06/D17: Transactional save unique by owner/analysis, then an explicit same-tab Maps link. This survives blocked popups and preserves planned status. Fictional routes have no legitimate waypoints to transmit; only resolved demo endpoints are sent.
+- D15: Minimal manual vehicles retain unknown fields; prediction and cost unavailable in contract 0.2.0. Existing catalog data remain synthetic.
+- D19: Origin-area price basis, visibly synthetic; exact brand quotes affect cost only.
+- D08–D11: Still deferred. The real sample audit found sparse fuel-rate readings and does not justify adopting VED or a fitted model. Next task: label semantics and static-feature mapping, followed by an agreed split/protocol. ML remains required.
 
 | ID | Status | Decision or question | Proposed next step / evidence | Owner / needed by |
 |---|---|---|---|---|

@@ -2,6 +2,10 @@
 
 Planning baseline: 2026-09-12 to approximately 2026-10-12. Cavite is the initial deployment/study area; Philippine expansion is later. ML is required for the submitted prototype. Model family, final dataset, features, and interval method remain open today, but need early dated decisions rather than being deferred until the last milestone.
 
+## September 13 progress
+
+An actual first-week VED file is now downloaded and audited outside Git. See [sample audit](ml-data-audit.md) and `scripts/audit_ved.py`. Fuel-rate sparsity/zeros prevent calling it training-ready. The data gate is still open; next investigate label semantics and static-feature mapping. No model, split or final dataset was selected.
+
 ## Immediate decision gate: September 15
 
 By September 15, produce an actual inspected labeled-data sample, a rights/access note, a data dictionary, counts of usable trips and distinct vehicles, the prediction-time feature mapping, and the advisor-facing claim boundary. Choose a training/evaluation route by this gate. A download link alone does not pass it. If unavailable, raise the deadline/scope conflict immediately while continuing the web workflow; do not wait until week four.

@@ -20,6 +20,8 @@ flowchart LR
   UI --> Maps[Google Maps handoff]
 ```
 
+Current local implementation: Fastify serves an allowlist of static browser files and the authenticated API from one origin. `trip-api.ts` integrates owned SQLite repositories and bounded fixture adapters; `src/contracts` validates all snapshots; `domain/cost.ts` owns decimal arithmetic. Native HTML/CSS/ES modules keep the browser dependency-free. See stack-decision.md and current-status.md for adopted choices; hosting remains open.
+
 The fixture adapters and later external providers satisfy the same contracts. A runtime LLM is unnecessary for arithmetic, route comparison or the first demo; explanations come from recorded reasons. Development agents are not runtime application components.
 
 ## Modules
