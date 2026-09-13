@@ -1,7 +1,7 @@
 import { Decimal } from "decimal.js";
 import { z } from "zod";
 
-export const CONTRACT_VERSION = "0.1.0" as const;
+export const CONTRACT_VERSION = "0.2.0" as const;
 const id = z.string().min(1).max(160);
 const timestamp = z.iso.datetime();
 export const decimal = z
@@ -31,6 +31,7 @@ export const locationSchema = z.strictObject({
   providerPlaceId: id.nullable(),
 });
 export const vehicleSchema = z.strictObject({
+  kind: z.literal("catalog").default("catalog"),
   id,
   market: z.string(),
   brand: z.string(),
@@ -45,6 +46,23 @@ export const vehicleSchema = z.strictObject({
   compatibleGrades: z.array(id).nullable(),
   ratedKmPerLiter: positiveDecimal.nullable(),
 });
+export const manualVehicleSchema = vehicleSchema.extend({
+  kind: z.literal("manual"),
+  market: z.null(),
+  brand: z.null(),
+  model: z.string().trim().min(1).max(100),
+  modelYear: z.null(),
+  variant: z.null(),
+  vehicleClass: z.null(),
+  displacementCc: z.null(),
+  transmission: z.null(),
+  compatibleGrades: z.null(),
+  ratedKmPerLiter: z.null(),
+});
+export const vehicleSnapshotSchema = z.union([
+  vehicleSchema,
+  manualVehicleSchema,
+]);
 export const fuelSelectionSchema = z.strictObject({
   brandId: id,
   fuelType,
@@ -58,7 +76,7 @@ export const analysisRequestSchema = z.strictObject({
   priceLocation: locationSchema,
 });
 export const inputSnapshotSchema = analysisRequestSchema.extend({
-  vehicleSnapshot: vehicleSchema,
+  vehicleSnapshot: vehicleSnapshotSchema,
 });
 export const priceObservationSchema = z
   .strictObject({
@@ -224,6 +242,93 @@ export const routeResultSchema = z.strictObject({
   fuelEstimate: fuelEstimateSchema,
   costEstimate: costEstimateSchema,
 });
+// Analyses and saved trips share the same snapshot integrity boundary.
+function checkSnapshots(
+  input: z.infer<typeof inputSnapshotSchema>,
+  routes: z.infer<typeof routeResultSchema>[],
+  price: z.infer<typeof priceSnapshotSchema> | null,
+  recommendedId: string | null,
+  ctx: z.RefinementCtx,
+) {
+  const fail = (message: string) => ctx.addIssue({ code: "custom", message });
+  const ids = routes.map((r) => r.route.id);
+  if (new Set(ids).size !== ids.length) fail("Duplicate route IDs.");
+  if (recommendedId !== null && !ids.includes(recommendedId))
+    fail("Recommendation must refer to a returned route.");
+  const vehicle = input.vehicleSnapshot;
+  const selection = input.fuelSelection;
+  if (vehicle.fuelType !== null && vehicle.fuelType !== selection.fuelType)
+    fail("Selected fuel is incompatible with the vehicle.");
+  if (
+    vehicle.compatibleGrades !== null &&
+    (selection.gradeId === null ||
+      !vehicle.compatibleGrades.includes(selection.gradeId))
+  )
+    fail("Selected grade is incompatible with the vehicle.");
+  if (price !== null) {
+    const quote = price.observation;
+    if (
+      quote.fuelType !== selection.fuelType ||
+      quote.gradeId !== selection.gradeId
+    )
+      fail("Quote fuel and grade must match the selection.");
+    if (
+      quote.brandId !== selection.brandId &&
+      !(quote.brandId === null && quote.geographicBasis === "general")
+    )
+      fail(
+        "Quote must match the brand or explicitly identify general fallback.",
+      );
+  }
+  const Exact = Decimal.clone({ precision: 40 });
+  for (const r of routes) {
+    const cost = r.costEstimate;
+    const fuel = r.fuelEstimate;
+    if (cost.priceObservationId !== (price?.observation.id ?? null))
+      fail("Cost must refer to the embedded quote snapshot.");
+    if (vehicle.kind === "manual" && fuel.status !== "unavailable")
+      fail(
+        "Manual vehicle prediction is unsupported in this contract version.",
+      );
+    if (
+      cost.status === "available" &&
+      (fuel.status !== "available" || price === null)
+    )
+      fail("Available cost requires fuel and price.");
+    if (cost.status === "available" && price !== null) {
+      const p = price.observation;
+      const expected =
+        fuel.expectedLiters !== null && p.amountPhpPerLiter !== null
+          ? new Exact(fuel.expectedLiters).mul(p.amountPhpPerLiter).toFixed()
+          : null;
+      if (
+        expected === null
+          ? cost.expectedPhp !== null
+          : cost.expectedPhp === null ||
+            !new Exact(expected).eq(cost.expectedPhp)
+      )
+        fail(
+          "Expected cost must equal fuel multiplied by the embedded exact quote.",
+        );
+      const lowFuel = fuel.range?.lowerLiters ?? fuel.expectedLiters;
+      const highFuel = fuel.range?.upperLiters ?? fuel.expectedLiters;
+      const lowPrice = p.amountPhpPerLiter ?? p.lowerPhpPerLiter;
+      const highPrice = p.amountPhpPerLiter ?? p.upperPhpPerLiter;
+      const needsRange =
+        lowFuel !== null &&
+        highFuel !== null &&
+        (fuel.range !== null || p.amountPhpPerLiter === null);
+      if (needsRange && lowPrice && highPrice && lowFuel && highFuel) {
+        if (
+          !cost.rangePhp ||
+          !new Exact(lowFuel).mul(lowPrice).eq(cost.rangePhp.lower) ||
+          !new Exact(highFuel).mul(highPrice).eq(cost.rangePhp.upper)
+        )
+          fail("Cost bounds must use the embedded fuel and price bounds.");
+      } else if (cost.rangePhp !== null) fail("Unexpected cost range.");
+    }
+  }
+}
 export const analysisSchema = z
   .strictObject({
     id,
@@ -245,6 +350,13 @@ export const analysisSchema = z
     }),
   })
   .superRefine((a, ctx) => {
+    checkSnapshots(
+      a.inputSnapshot,
+      a.routes,
+      a.selectedPriceSnapshot,
+      a.recommendation.routeId,
+      ctx,
+    );
     if (Date.parse(a.expiresAt) <= Date.parse(a.createdAt))
       ctx.addIssue({
         code: "custom",
@@ -305,8 +417,31 @@ export const tripSchema = z
     status: z.enum(["planned", "taken", "not_taken"]),
     promptDismissedAt: timestamp.nullable(),
     handoffRequestedAt: timestamp.nullable(),
+    analysisCreatedAt: timestamp.nullable().default(null),
+    recommendationSnapshot: analysisSchema.shape.recommendation
+      .nullable()
+      .default(null),
+    warnings: z.array(z.string()).default([]),
   })
   .superRefine((t, ctx) => {
+    if (
+      t.recommendationSnapshot &&
+      (t.recommendationSnapshot.routeId !== t.recommendedRouteId ||
+        (t.recommendationSnapshot.status === "available") !==
+          (t.recommendedRouteId !== null))
+    )
+      ctx.addIssue({
+        code: "custom",
+        message:
+          "Saved recommendation metadata must match the recommended route.",
+      });
+    checkSnapshots(
+      t.inputSnapshot,
+      t.routeSnapshots,
+      t.selectedPriceSnapshot,
+      t.recommendedRouteId,
+      ctx,
+    );
     if (!t.routeSnapshots.some((r) => r.route.id === t.selectedRouteId))
       ctx.addIssue({
         code: "custom",
@@ -318,3 +453,4 @@ export type PriceSnapshot = z.infer<typeof priceSnapshotSchema>;
 export type CostEstimate = z.infer<typeof costEstimateSchema>;
 export type Analysis = z.infer<typeof analysisSchema>;
 export type PlannedTrip = z.infer<typeof tripSchema>;
+export type VehicleSnapshot = z.infer<typeof vehicleSnapshotSchema>;
