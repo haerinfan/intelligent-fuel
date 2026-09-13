@@ -288,6 +288,9 @@ export function makeHistory(ownerId = "test-user-a"): PlannedTrip[] {
       status: "planned",
       promptDismissedAt: null,
       handoffRequestedAt: null,
+      analysisCreatedAt: a.createdAt,
+      recommendationSnapshot: a.recommendation,
+      warnings: a.warnings,
     });
   });
 }
