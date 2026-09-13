@@ -8,6 +8,7 @@ const db = openDatabase(config.databasePath);
 const app = createApp(
   createAuth(db, config.origin, config.secret),
   config.origin,
+  db,
 );
 app.addHook("onClose", async () => {
   db.close();
@@ -18,7 +19,7 @@ for (const signal of ["SIGINT", "SIGTERM"] as const)
   });
 try {
   await app.listen({ host: "127.0.0.1", port: config.port });
-  console.log(`Intelligent Fuel M1 API: ${config.origin}/health`);
+  console.log(`Intelligent Fuel local demo: ${config.origin}`);
 } catch (error) {
   await app.close();
   throw error;

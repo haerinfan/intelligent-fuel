@@ -15,7 +15,7 @@ export function createAuth(db: DatabaseSync, origin: string, secret: string) {
       minPasswordLength: 12,
     },
     session: { expiresIn: 60 * 60 * 8, cookieCache: { enabled: false } },
-    rateLimit: { enabled: true, window: 60, max: 30 },
+    rateLimit: { enabled: true, window: 60, max: 30, storage: "database" },
     telemetry: { enabled: false },
     logger: { disabled: true },
   });

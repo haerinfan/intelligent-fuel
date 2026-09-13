@@ -1,9 +1,18 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import type { DatabaseSync } from "node:sqlite";
 import { fromNodeHeaders } from "better-auth/node";
 import Fastify from "fastify";
 import type { Auth } from "./auth.js";
 import { CONTRACT_VERSION } from "./contracts/index.js";
+import { registerTripApi } from "./trip-api.js";
 
-export function createApp(auth: Auth, origin: string) {
+export function createApp(
+  auth: Auth,
+  origin: string,
+  db?: DatabaseSync,
+  clock?: () => Date,
+) {
   const app = Fastify({
     logger: false,
     bodyLimit: 32 * 1024,
@@ -12,11 +21,28 @@ export function createApp(auth: Auth, origin: string) {
   app.get("/health", async () => ({
     status: "ok",
     service: "intelligent-fuel",
-    milestone: "M1",
+    milestone: db ? "M2-fixture" : "M1",
     schemaVersion: CONTRACT_VERSION,
     mode: "local-fixture",
     mlModelLoaded: false,
   }));
+  for (const [url, file, type] of [
+    ["/", "index.html", "text/html; charset=utf-8"],
+    ["/app.js", "app.js", "text/javascript; charset=utf-8"],
+    ["/styles.css", "styles.css", "text/css; charset=utf-8"],
+  ] as const) {
+    app.get(url, async (_request, reply) => {
+      reply.header(
+        "content-security-policy",
+        "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+      );
+      reply.header("x-content-type-options", "nosniff");
+      reply.header("referrer-policy", "no-referrer");
+      reply.header("cache-control", "no-store");
+      return reply.type(type).send(readFileSync(resolve("public", file)));
+    });
+  }
+  if (db) registerTripApi(app, auth, origin, db, clock);
   app.route({
     method: ["GET", "POST"],
     url: "/api/auth/*",
