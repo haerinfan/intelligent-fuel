@@ -1,6 +1,27 @@
 # Data contracts
 
-Version 0.1. These are implementation specifications, not running API code. Field names, units, state meanings and invariants are normative for the proposed prototype; changes go through the lead and decision log. Statistical method and exact predictor feature set remain deferred.
+Version 0.2.0, implemented fixture API. Runtime schemas are in `src/contracts/index.ts`; handlers are in `src/trip-api.ts`. Changes go through the lead and decision log. Statistical method and predictor features remain deferred. The fixture implementation notes below supersede the original proposed endpoint names.
+
+## Implemented fixture interface
+
+All `/api/v1` data endpoints require a verified cookie session; mutations require the configured same origin. Ownership comes from the session. Request objects reject unexpected fields.
+
+| Endpoint | Input / output |
+|---|---|
+| GET /api/v1/bootstrap | `{catalog, locations, brands, scenarios, notice, schemaVersion}`; the bounded catalog is searched/browsed in the client |
+| GET /api/v1/garage | `{vehicles, preferences}`; saved vehicle `{id, vehicleSnapshot, createdAt}` |
+| POST /api/v1/garage | `{catalogVehicleId}` or `{manual:{label,fuelType}}` (known gasoline/diesel or null) -> `{vehicle}` |
+| GET, DELETE /api/v1/garage/:id | Owned record / deletion; historical snapshots remain intact |
+| PATCH /api/v1/preferences | Optional `defaultVehicleId`, `brandId`; referenced vehicle must be owned |
+| POST /api/v1/analyses | Core analysis request plus `scenario` and optional `simulateDelay`; returns `{analysis}` |
+| GET /api/v1/analyses/:id | Owned `{analysis}` |
+| POST /api/v1/trips | `{analysisId,selectedRouteId,simulateFailure?}` -> `{trip,mapsUrl}`; no separate idempotency header needed |
+| GET /api/v1/trips | Optional limit 1–100; no limit returns all local prototype plans; `{trips}` |
+| GET /api/v1/trips/:id | Owned `{trip,mapsUrl}` |
+
+Manual snapshots have `kind=manual`, label in `model`, and null catalog fields; catalog snapshots have `kind=catalog`. Manual prediction is unsupported in this version. Saved trips retain `analysisCreatedAt`, `recommendationSnapshot`, warnings and all route/price/vehicle snapshots. For early local development records missing the additional metadata, parsers expose unknown/null values rather than invent history.
+
+Trip uniqueness is owner+analysis, enforced transactionally and by a database unique constraint. Identical retries return 200 and the original trip; a first save returns 201; conflicting selection returns 409 `SELECTION_CONFLICT`. Expired unsaved analyses return 410. A simulated save error returns 503 `DEMO_SAVE_FAILURE` without a write. The delay/failure fields are bounded, clearly exposed fixture controls. Live-provider retention, paginated/searchable catalog, advanced history filters and measurement/status endpoints below remain proposals for later milestones.
 
 ## Conventions
 
@@ -40,7 +61,7 @@ Fuel range: `{ lowerLiters, upperLiters, kind, nominalCoverage }`, where `kind=d
 
 For exact price p and liters [l,u], cost bounds are [l×p,u×p], expected cost e×p. If both fuel and price are ranges, nonnegative endpoint products give a cost envelope; that envelope has no claimed probability coverage without later justification. Costs exclude tolls and non-fuel expenses.
 
-## API surface
+## Original proposed API surface (future names/features, not current handlers)
 
 Authentication transport is selected in M1. Every private endpoint requires an authenticated session. Do not accept authoritative ownerId in client requests.
 
