@@ -1,6 +1,6 @@
 # First VED sample audit
 
-13 September 2026. **Candidate only; not selected for training.** The data spike now includes an actual inspected file. A final label protocol, model and held-out split remain unresolved.
+13 September 2026. **Candidate only; not selected for training.** The data spike now includes an actual inspected file. A final label protocol, model and held-out split remain unresolved. The [14 September follow-up](ml-label-feasibility.md) completes the static join and paper review: all populated raw rates in this week belong to PHEVs, and retained windows must not be treated as complete journeys.
 
 ## Source and reproduction
 

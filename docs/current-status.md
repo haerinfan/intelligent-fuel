@@ -1,6 +1,6 @@
 # Current implementation status
 
-Updated 13 September 2026. This page supersedes historical foundation-only statements. The local fixture journey is implemented; the thesis and live/ML validation are not complete.
+Updated 14 September 2026. This page supersedes historical foundation-only statements. The fixture journey is implemented and synced to GitHub; the thesis and live/ML validation are not complete.
 
 ## Ready locally
 
@@ -18,10 +18,10 @@ Run `npm ci`, `npm run setup`, `npm run check`, then `npm run dev`. Open `http:/
 
 24 tests pass, plus lint, types, 11 fixture scenarios and build. See [acceptance evidence](acceptance-run.md) for desktop/360px, keyboard, delayed responses and actual Maps navigation. These are local fixture measurements, not live-provider performance guarantees.
 
-Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are included. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files. Check CI execution on the submitted revision.
+Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. [Windows and Linux CI passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/34797476946) on `5e13437`, after fixing browser-source checkout line endings. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
 
 ## Research and remaining scope
 
-Cavite first; approximately 12 October 2026 submission; ML required. The [actual VED sample audit](ml-data-audit.md) found sparse/zero fuel-rate data: this is not training-ready. Next inspect label semantics and static-feature mapping; D08–D11 stay unresolved. No trained model or live provider is connected. A fixture demo alone does not satisfy the ML thesis requirement.
+Cavite first; approximately 12 October 2026 submission; ML required. The [initial sample audit](ml-data-audit.md) and [label/static follow-up](ml-label-feasibility.md) are complete. All populated raw fuel rates in the inspected week are PHEV; ICE labels need a justified derivation. Next specify units, retained-window targets and quality rules before training; D08–D11 stay unresolved. No trained model or live provider is connected. A fixture demo alone does not satisfy the ML thesis requirement.
 
 Physical mobile testing, participant consent/retention, verified email/recovery, hosting, live pricing/routing permissions, status/measurement collection and held-out ML evaluation remain future gates. Use fictional local accounts. Earlier foundation snapshots were documentation milestones; this work does not retroactively claim they were tested.
