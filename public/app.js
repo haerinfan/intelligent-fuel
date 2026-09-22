@@ -16,6 +16,8 @@ let bootstrap,
   selectedRoute = null;
 let generation = 0,
   authGeneration = 0,
+  historyGeneration = 0,
+  detailGeneration = 0,
   signup = false,
   fullHistory = false,
   saving = false;
@@ -230,6 +232,7 @@ function renderResults() {
 async function saveTrip() {
   if (!analysis || saving) return;
   const token = generation,
+    authToken = authGeneration,
     id = analysis.id,
     route = selectedRoute;
   saving = true;
@@ -240,10 +243,18 @@ async function saveTrip() {
       selectedRouteId: route,
       simulateFailure: $("simulate-save").checked,
     });
+    if (authToken !== authGeneration) return;
     await loadHistory();
+    if (authToken !== authGeneration) return;
     if (token !== generation || !analysis) {
       status(
         "The previous plan was saved. Your changed inputs still need a new analysis.",
+      );
+      return;
+    }
+    if (route !== selectedRoute) {
+      status(
+        "Your earlier route selection was saved in history. Compare again to save a different plan.",
       );
       return;
     }
@@ -251,20 +262,28 @@ async function saveTrip() {
       `<div class="saved-box"><h3>Saved as a planned trip</h3><p>Your plan is safely in history. Use this link to open Google Maps; retrying it does not create a second trip.</p><a class="maps-link" href="${htmlEscape(result.mapsUrl)}" rel="noopener noreferrer">Open in Google Maps ↗</a><p>Google Maps may update the route. Fictional route alternatives cannot be reproduced exactly. Opening or returning does not mark this trip taken.</p></div>`;
     status("Trip saved. The Google Maps link is ready.");
   } catch (error) {
-    showError(error);
+    if (authToken === authGeneration) showError(error);
   } finally {
     saving = false;
     if ($("save-trip")) $("save-trip").disabled = false;
   }
 }
 async function loadHistory() {
-  const token = authGeneration;
-  const data = await api(`/api/v1/trips${fullHistory ? "" : "?limit=5"}`);
-  if (token !== authGeneration) return;
-  $("history-title").textContent = fullHistory
+  const token = authGeneration,
+    request = ++historyGeneration,
+    requestedFullHistory = fullHistory;
+  let data;
+  try {
+    data = await api(`/api/v1/trips${requestedFullHistory ? "" : "?limit=5"}`);
+  } catch (error) {
+    if (token !== authGeneration || request !== historyGeneration) return;
+    throw error;
+  }
+  if (token !== authGeneration || request !== historyGeneration) return;
+  $("history-title").textContent = requestedFullHistory
     ? "All planned trips"
     : "Recent trips";
-  $("history-toggle").textContent = fullHistory
+  $("history-toggle").textContent = requestedFullHistory
     ? "Show latest five"
     : "View full history";
   $("history-list").innerHTML = data.trips.length
@@ -277,9 +296,17 @@ async function loadHistory() {
     : '<p class="hint">No saved plans yet. Compare routes and save your first trip.</p>';
 }
 async function showTrip(id) {
-  const { trip: t, mapsUrl } = await api(
-    `/api/v1/trips/${encodeURIComponent(id)}`,
-  );
+  const token = authGeneration,
+    request = ++detailGeneration;
+  let data;
+  try {
+    data = await api(`/api/v1/trips/${encodeURIComponent(id)}`);
+  } catch (error) {
+    if (token !== authGeneration || request !== detailGeneration) return;
+    throw error;
+  }
+  if (token !== authGeneration || request !== detailGeneration) return;
+  const { trip: t, mapsUrl } = data;
   $("trip-detail").hidden = false;
   $("trip-detail").innerHTML =
     `<h3>Saved trip details</h3><p class="notice">Historical synthetic snapshot — not recomputed with current prices or defaults.</p><p>${htmlEscape(title(t.inputSnapshot.vehicleSnapshot))}<br>${htmlEscape(t.inputSnapshot.origin.label)} → ${htmlEscape(t.inputSnapshot.destination.label)}</p><p class="hint">Saved: ${htmlEscape(date(t.createdAt))} · Status: ${htmlEscape(t.status)}<br>Selected: ${htmlEscape(t.selectedRouteId)} · Recommended: ${htmlEscape(t.recommendedRouteId)}<br>Contract: ${htmlEscape(t.schemaVersion)} · Analysis: ${htmlEscape(t.analysisId)}</p>${t.routeSnapshots.map((r) => routeHtml(r, t.recommendedRouteId, false)).join("")}${priceHtml(t.selectedPriceSnapshot)}<a class="maps-link" href="${htmlEscape(mapsUrl)}" rel="noopener noreferrer">Open saved plan in Google Maps ↗</a><p class="hint">Google Maps may update the route. This remains planned, not a record of driving.</p>`;
