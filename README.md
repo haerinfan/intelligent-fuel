@@ -17,7 +17,7 @@ Open **http://127.0.0.1:3000**. Sign in with `driver-a@example.test` or `driver-
 
 Add a fictional catalog or manual vehicle, choose two resolved demo locations, compare routes, select a plan, save it, and follow the Google Maps link. Back returns to the app; opening Maps never marks the plan as taken. Use the separate Demo scenarios controls for unavailable data and failure cases.
 
-`npm run check` runs lint, types, 24 tests, fixture validation and compilation. `npm run build` then `npm start` runs the compiled server with the same `public` folder. `/health` reports fixture mode and unloaded ML. There is one local server and no external service setup.
+`npm run check` runs lint, types, 27 tests, fixture validation and compilation. `npm run build` then `npm start` runs the compiled server with the same `public` folder. `/health` reports fixture mode and unloaded ML. There is one local server and no external service setup.
 
 ## Work together
 
@@ -29,7 +29,7 @@ Start with these project records:
 - [Requirements](docs/requirements.md), [acceptance criteria](docs/acceptance-criteria.md) and [milestone backlog](docs/backlog.md)
 - [Architecture](docs/architecture.md), [data contracts](contracts/data-contracts.md), [stack decisions](docs/stack-decision.md) and [decision log](docs/decisions.md)
 - [Agent instructions](AGENTS.md) and [delegation workflow](docs/agent-workflow.md)
-- [One-month ML plan](docs/ml-plan.md) and [actual dataset sample audit](docs/ml-data-audit.md)
+- [One-month ML plan](docs/ml-plan.md), [dataset feasibility audit](docs/ml-data-audit.md) and [proposed label specification](docs/ml-label-spec.md)
 
 ## Research boundary
 
