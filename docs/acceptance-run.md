@@ -1,8 +1,8 @@
 # Fixture journey acceptance run
 
-13 September 2026. Windows, Node 24.20.0, npm 11, in-app Chromium browser; fixtures `cavite-demo-v1`, contract `0.2.0`. Revision: the commit containing this report (`git log -1 -- docs/acceptance-run.md`). This is the fixture gate, not ML validity or production readiness.
+Initial browser run 13 September 2026; asynchronous regression update 22 September 2026. Windows, Node 24.20.0, npm 11, in-app Chromium browser; fixtures `cavite-demo-v1`, contract `0.2.0`. Revision: the commit containing this report (`git log -1 -- docs/acceptance-run.md`). This is the fixture gate, not ML validity or production readiness.
 
-`npm run check`: 24 passing tests, TypeScript/lint/build and 11 fixture scenarios. API tests use real authenticated sessions and SQLite. Browser checks used fictional local accounts.
+`npm run check`: 27 passing tests, TypeScript/lint/build and 11 fixture scenarios. API tests use real authenticated sessions and SQLite. Browser checks used fictional local accounts. Three additional tests execute the browser script with delayed API responses to cover route-selection/save, account/detail and history-mode races.
 
 | AC | Result / scope | Evidence |
 |---|---|---|
@@ -31,4 +31,4 @@ Two explicit steps: save the plan, then activate the returned same-tab Maps link
 
 ## Review limits
 
-Independent agents completed collaborator setup and initial UI markup/styles, but usage limits prevented final independent review. The lead integrated and exercised the result; this is not a separate reviewer sign-off. No physical mobile device, screen reader, live provider, trained model, statistical calibration or measured fuel accuracy was tested. No participant study began.
+An independent static UX review found three asynchronous response races. The lead fixed all three and added deterministic delayed-response regression tests; the full 27-test check passes. This is still not a physical-device or screen-reader sign-off. No live provider, trained model, statistical calibration or measured fuel accuracy was tested. No participant study began.

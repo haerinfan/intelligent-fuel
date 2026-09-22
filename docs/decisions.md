@@ -12,6 +12,12 @@ D01 and the scope updates below are confirmed by the user. The original table is
 - D19: Origin-area price basis, visibly synthetic; exact brand quotes affect cost only.
 - D08–D11: Still deferred. The real sample audit found sparse fuel-rate readings and does not justify adopting VED or a fitted model. Next task: label semantics and static-feature mapping, followed by an agreed split/protocol. ML remains required.
 
+## Research evidence update, 22 September 2026
+
+- D09–D11 remain deferred. The unit-checked draft in `ml-label-spec.md` defines only a candidate retained-window target and leakage boundary.
+- A strict five-second continuity audit found 29 ICE MAF/trim segments lasting at least five minutes across 17 vehicles, and 12 lasting ten minutes across 9 vehicles, in the inspected week. PHEV OEM-rate coverage is smaller. These counts are feasibility evidence, not training approval.
+- The next choice is adviser-owned: audit another VED week using the same draft or pivot to a consented local measurement protocol. No model, scoring rule, interval method, density assumption or final split was selected.
+
 | ID | Status | Decision or question | Proposed next step / evidence | Owner / needed by |
 |---|---|---|---|---|
 | D01 | Confirmed | School thesis prototype | User clarification on 2026-09-12 | Lead / now |

@@ -1,6 +1,6 @@
 # Current implementation status
 
-Updated 14 September 2026. This page supersedes historical foundation-only statements. The fixture journey is implemented and synced to GitHub; the thesis and live/ML validation are not complete.
+Updated 22 September 2026. This page supersedes historical foundation-only statements. The fixture journey is implemented and synced to GitHub; the thesis and live/ML validation are not complete.
 
 ## Ready locally
 
@@ -16,12 +16,12 @@ Run `npm ci`, `npm run setup`, `npm run check`, then `npm run dev`. Open `http:/
 
 ## Verification and collaboration
 
-24 tests pass, plus lint, types, 11 fixture scenarios and build. See [acceptance evidence](acceptance-run.md) for desktop/360px, keyboard, delayed responses and actual Maps navigation. These are local fixture measurements, not live-provider performance guarantees.
+27 tests pass, plus lint, types, 11 fixture scenarios and build. The latest GitHub revision also passes Windows and Linux CI. See [acceptance evidence](acceptance-run.md) for desktop/360px, keyboard, delayed responses and actual Maps navigation. These are local fixture measurements, not live-provider performance guarantees.
 
-Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. [Windows and Linux CI passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/34797476946) on `5e13437`, after fixing browser-source checkout line endings. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
+Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. [Windows and Linux CI passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/35723942050) on `395fc6f`, including delayed-response regression tests. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
 
 ## Research and remaining scope
 
-Cavite first; approximately 12 October 2026 submission; ML required. The [initial sample audit](ml-data-audit.md) and [label/static follow-up](ml-label-feasibility.md) are complete. All populated raw fuel rates in the inspected week are PHEV; ICE labels need a justified derivation. Next specify units, retained-window targets and quality rules before training; D08–D11 stay unresolved. No trained model or live provider is connected. A fixture demo alone does not satisfy the ML thesis requirement.
+Cavite first; approximately 12 October 2026 submission; ML required. The [initial sample audit](ml-data-audit.md), [label/static follow-up](ml-label-feasibility.md) and [proposed retained-window specification](ml-label-spec.md) are complete. All populated raw fuel rates in the inspected week are PHEV; strict five-second continuity leaves only 29 five-minute ICE MAF/trim segments across 17 vehicles. Next obtain adviser direction and audit another week or pivot to a local measurement protocol; D08–D11 stay unresolved. No trained model or live provider is connected. A fixture demo alone does not satisfy the ML thesis requirement.
 
 Physical mobile testing, participant consent/retention, verified email/recovery, hosting, live pricing/routing permissions, status/measurement collection and held-out ML evaluation remain future gates. Use fictional local accounts. Earlier foundation snapshots were documentation milestones; this work does not retroactively claim they were tested.
