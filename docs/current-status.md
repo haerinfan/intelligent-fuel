@@ -18,7 +18,7 @@ Run `npm ci`, `npm run setup`, `npm run check`, then `npm run dev`. Open `http:/
 
 27 tests pass, plus lint, types, 11 fixture scenarios and build. The latest GitHub revision also passes Windows and Linux CI. See [acceptance evidence](acceptance-run.md) for desktop/360px, keyboard, delayed responses and actual Maps navigation. These are local fixture measurements, not live-provider performance guarantees.
 
-Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. [Windows and Linux CI passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/35723942050) on `395fc6f`, including delayed-response regression tests. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
+Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. [Windows and Linux CI passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/35725593393) for the research update on `055d50f`, including the 27 application tests. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
 
 ## Research and remaining scope
 
