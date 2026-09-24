@@ -1,6 +1,6 @@
 # Milestone backlog
 
-Updated 22 September 2026: fixture journey implemented, targeting approximately 12 October submission. The original table records the initial planning baseline; the current progress table below supersedes its old statuses. Every task needs acceptance IDs and evidence; parallel work requires separate ownership.
+Updated 24 September 2026: fixture journey implemented, targeting approximately 12 October submission. The original table records the initial planning baseline; the current progress table below supersedes its old statuses. Every task needs acceptance IDs and evidence; parallel work requires separate ownership.
 
 ## Current progress
 
@@ -8,12 +8,12 @@ Updated 22 September 2026: fixture journey implemented, targeting approximately 
 |---|---|---|
 | M1.1 Thesis scope | Partly complete | Cavite, one-month deadline and required ML confirmed; rubric/budget remain open |
 | M1.2 Environment | Complete locally | Reproducible setup/check/dev, SQLite migrations, maintained auth and local-only server |
-| M1.3 Data spike | Partly complete | Sample/static/paper/continuity audits and draft label specification complete; adviser choice, another week or local protocol, and local price publication remain open |
+| M1.3 Data spike | Partly complete | Two-week sample/static/continuity/overlap audits and draft label specification complete; adviser acceptance or local-protocol pivot and local price publication remain open |
 | M1.4 Fixture interfaces | Complete for M2 | Contract 0.2.0, manual unknowns/compatibility/integrity, lead ownership |
 | M2.1–M2.4 Fixture journey | Implemented and checked | See acceptance-run.md; no live provider or ML claim |
 | M2.5 Review | Independent static review complete | Three async races fixed with delayed-response tests; physical mobile and screen-reader review remain open |
 | Collaboration setup | Synced, CI verified | CONTRIBUTING, PR template, dependency updates and Windows/Linux CI on GitHub; invite and branch-rule enforcement remain pending |
-| Next research task | Adviser decision needed | Review ml-label-spec.md, then audit another VED week under the same draft or pivot to a consented local measurement protocol |
+| Next research task | Adviser decision needed | Review ml-label-spec.md and ml-two-week-audit.md; accept/resolve the retained-window protocol, request more audits or pivot to consented local measurement |
 
 M3–M5 remain unimplemented. The completed demo does not satisfy the ML submission requirement by itself.
 

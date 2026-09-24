@@ -56,6 +56,8 @@ Selected first-week findings:
 
 At the permissive 30-second gap, eligible counts rise substantially, especially for HEV. This sensitivity shows that a continuity threshold materially changes the research population. The strict five-second results are small and do not justify fitting a production claim.
 
+The [second-week and cross-week audit](ml-two-week-audit.md) completes the additional-week feasibility gate. Strict trim-complete coverage changes materially between weeks, and 197 of 307 observed vehicles appear in both. Additional windows therefore cannot be treated as independent vehicle evidence.
+
 ## Prediction-time feature boundary
 
 Allowed pre-trip candidates must exist before departure: selected vehicle attributes that survive source validation, planned distance, planned duration, route class summaries, departure-time category and forecast/context data whose historical availability can be reproduced.
@@ -68,7 +70,7 @@ Before fitting even a baseline:
 
 1. Adviser accepts the retained-window claim or selects a different dataset/measurement plan.
 2. The derivation document resolves density, AFR, trim-bank, interpolation, zero-rate and plausible-bound rules.
-3. At least one additional week is audited with the same audit version and settings. Each input's own SHA-256 hash and eligible vehicle/window counts are reported after all exclusions.
+3. **Feasibility evidence complete:** one additional week was audited with the same settings. Each input's SHA-256 hash, eligible counts and cross-week vehicle overlap are reported in `ml-two-week-audit.md`.
 4. All windows from one original vehicle/trip stay within one split. A vehicle-held-out evaluation is required for claims about unseen vehicles; a later-time holdout is required for temporal claims.
 5. Preprocessing is fit only on training partitions. A simple non-ML calculation and a simple regression baseline are frozen before comparing more complex models.
 6. Metrics are declared before results. Report MAE in liters for the retained window, a scale-aware secondary metric, coverage, sample/vehicle counts and subgroup errors. Do not label a simulated range as a prediction interval.
@@ -76,4 +78,4 @@ Before fitting even a baseline:
 
 ## Current decision
 
-Do not train yet. The next decision is whether to audit additional VED weeks under this draft or pivot to a locally measured, consented fuel protocol. That choice belongs in D11 with adviser input. Model family, scoring rule and interval method remain open.
+Do not train yet. The next decision is whether the adviser accepts the retained-window claim and resolves the derivation rules, requests more external audits, or pivots to a locally measured, consented fuel protocol. That choice belongs in D11. Model family, scoring rule and interval method remain open.

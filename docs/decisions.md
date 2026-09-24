@@ -18,6 +18,12 @@ D01 and the scope updates below are confirmed by the user. The original table is
 - A strict five-second continuity audit found 29 ICE MAF/trim segments lasting at least five minutes across 17 vehicles, and 12 lasting ten minutes across 9 vehicles, in the inspected week. PHEV OEM-rate coverage is smaller. These counts are feasibility evidence, not training approval.
 - The next choice is adviser-owned: audit another VED week using the same draft or pivot to a consented local measurement protocol. No model, scoring rule, interval method, density assumption or final split was selected.
 
+## Research evidence update, 24 September 2026
+
+- The second chronological VED week was audited with unchanged continuity settings, with a separate hash recorded for each input; the additional-week feasibility gate is complete.
+- Strict five-minute ICE MAF/trim coverage changes from 29 segments across 17 vehicles to 194 across 87. Across both weeks, 197 of 307 vehicles repeat, including 13 ICE vehicles qualifying for trim-complete windows in both weeks.
+- D08–D11 remain deferred. Reversible external-data inspection does not adopt VED or replace adviser acceptance of the claim, derivation, split and evaluation protocol.
+
 | ID | Status | Decision or question | Proposed next step / evidence | Owner / needed by |
 |---|---|---|---|---|
 | D01 | Confirmed | School thesis prototype | User clarification on 2026-09-12 | Lead / now |
