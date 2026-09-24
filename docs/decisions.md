@@ -23,6 +23,8 @@ D01 and the scope updates below are confirmed by the user. The original table is
 - The second chronological VED week was audited with unchanged continuity settings, with a separate hash recorded for each input; the additional-week feasibility gate is complete.
 - Strict five-minute ICE MAF/trim coverage changes from 29 segments across 17 vehicles to 194 across 87. Across both weeks, 197 of 307 vehicles repeat, including 13 ICE vehicles qualifying for trim-complete windows in both weeks.
 - D08–D11 remain deferred. Reversible external-data inspection does not adopt VED or replace adviser acceptance of the claim, derivation, split and evaluation protocol.
+- Two current DOE Region IV-A price reports were visually inspected for Cavite. They support dated city-level brand/grade ranges, but contain no station identity, coordinates, machine-readable schema or time-of-day observation. D13 remains open.
+- The proposed DOE intake rule treats blank, `None`, `No LFRO` and `0.00-0.00` as unavailable; it preserves report period, monitoring interval, retrieval time, page and hash. This rule blocks zero-price arithmetic and does not interpret DOE's internal missing-value semantics.
 
 | ID | Status | Decision or question | Proposed next step / evidence | Owner / needed by |
 |---|---|---|---|---|
@@ -38,7 +40,7 @@ D01 and the scope updates below are confirmed by the user. The original table is
 | D10 | Deferred | Interval method and its statistical meaning | Demo range is explicitly simulated. Define coverage target and empirical calibration later | Research / M5 |
 | D11 | Deferred | Dataset collection, label validation and split design | Distinguish user reports from verified labels; examine trip-level measurement and leakage before selecting protocol | Research + adviser / before participant collection |
 | D12 | Open | Participant consent, retention and deletion | School rules and study protocol determine handling of account/location/measurement data; collect no participant data during foundation | Thesis team / before M4 study |
-| D13 | Open | Live price source, freshness policy and final ingestion | Verify usable brand/type/grade/location observations; set expiry by source. Manual curated snapshots are a possible prototype path, not a current-price API claim | Data / M3 |
+| D13 | Open | Live price source, freshness policy and final ingestion | DOE South Luzon reports are feasible for manually reviewed Cavite city ranges. Decide timestamp normalization, freshness threshold, reviewer/update ownership and whether documented automated access exists; do not claim station or real-time pricing | Data + lead / M3 |
 | D14 | Open | Maps content persistence vs saved history | Reconcile provider rules with immutable analysis needs; persist only permitted fields; select an alternative source or revise persistence design if necessary | Data + lead / before M3 live storage |
 | D15 | Proposed | Fuel data can be unavailable | Missing grade/spec/baseline → route-only result with no numeric fuel estimate; missing usable price → fuel result without cost. Never substitute zero | Lead / M2 |
 | D16 | Open | Thesis question, deadline and adviser rubric | Confirm whether contribution is prediction accuracy, recommendation quality, usability, or a combination; define deliverable dates | Thesis team / M1 and M5 |

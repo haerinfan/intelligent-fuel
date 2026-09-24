@@ -8,7 +8,7 @@ Updated 24 September 2026: fixture journey implemented, targeting approximately 
 |---|---|---|
 | M1.1 Thesis scope | Partly complete | Cavite, one-month deadline and required ML confirmed; rubric/budget remain open |
 | M1.2 Environment | Complete locally | Reproducible setup/check/dev, SQLite migrations, maintained auth and local-only server |
-| M1.3 Data spike | Partly complete | Two-week sample/static/continuity/overlap audits and draft label specification complete; adviser acceptance or local-protocol pivot and local price publication remain open |
+| M1.3 Data spike | Partly complete | Two-week ML audits, draft label specification and a visually checked two-publication DOE Cavite price spike are complete; adviser acceptance or local-protocol pivot and D13 ingestion/freshness decisions remain open |
 | M1.4 Fixture interfaces | Complete for M2 | Contract 0.2.0, manual unknowns/compatibility/integrity, lead ownership |
 | M2.1–M2.4 Fixture journey | Implemented and checked | See acceptance-run.md; no live provider or ML claim |
 | M2.5 Review | Independent static review complete | Three async races fixed with delayed-response tests; physical mobile and screen-reader review remain open |
@@ -28,7 +28,7 @@ Before writing application code, the lead must document the chosen stack and run
 | M0.3 Contracts and acceptance | Lead | M0.2 | Architecture, decisions, contracts, AC01–AC18 and cross-document review | Complete |
 | M1.1 Scope and thesis constraints | Thesis team + lead | M0 | Record area, deadline, adviser rubric and budget in D02/D05/D16 | Not started |
 | M1.2 Stack and environment | Lead | M0; available team constraints | Choose modular stack/auth/DB; add reproducible install/dev/check commands and test-account setup; no undocumented infrastructure | Not started |
-| M1.3 Data spike plan | Data | M0.2 | Select candidate variants and inspect one actual price publication; document coverage, permission and unknowns | Not started |
+| M1.3 Data spike plan | Data | M0.2 | Select candidate variants and inspect one actual price publication; document coverage, permission and unknowns | Price publication complete; vehicle variants open |
 | M1.4 Fixture and interface freeze | Lead + UX | M1.2 | Resolve D06/D15/D19, version interface, define synthetic success/failure fixtures and owners | Not started |
 | M2.1 Account and garage | Backend + frontend | M1.4 | Authenticated test users; searchable/browsable garage; AC01–03 and AC15 | Not started |
 | M2.2 Fixture analysis | Data/backend | M1.4 | Route/price/estimate fixtures, structured degradation, pure cost logic; AC04–06, AC12–13, AC16 | Not started |
