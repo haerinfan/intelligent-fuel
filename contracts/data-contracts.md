@@ -41,6 +41,7 @@ Trip uniqueness is owner+analysis, enforced transactionally and by a database un
 | SavedVehicle | id, ownerId, entryMode (`catalog` or `manual`), displayName, specificationSnapshot, isDefault | catalogVariantId null for manual entry; at most one default per owner. No fabricated fallback economy |
 | FuelSelection | brandId, fuelType | gradeId nullable only if compatibility and quote semantics allow it; ambiguity must be resolved before price matching |
 | PriceObservation | id, fuelType, currency=`PHP`, unit=`PHP_PER_LITER`, geographicBasis, geographyLabel, observedAt, retrievedAt, provenance | brandId null only for disclosed general fallback; gradeId, stationId; amount exact or lower/upper range (see below) |
+| SourcePriceRecord (staging proposal) | sourceName, sourceUrl, sourceFileSha256, sourcePage, reportPeriodStart/End, monitoredFrom/ThroughDate, retrievedAt, province, cityMunicipality, fuelType, gradeId, reviewStatus | brandId; lower/upper/common PHP per liter; sourceMarker; reviewer metadata. This record cannot enter cost arithmetic until visually verified and normalized under D13 |
 | RouteCandidate | id, label, distanceMeters, durationSeconds, trafficStatus, calculatedAt, provenance | geometry/previewRef and providerRouteId ephemeral unless retention permits; trafficStatus=`aware|unaware|unknown` |
 | SelectedPriceSnapshot | observation (embedded PriceObservation), freshness, freshnessPolicyVersion, selectionPolicyVersion, matchedAt | An immutable copy of quote values, geographic basis, provenance and dates, not a live ID lookup |
 | FuelEstimate | status=`available|unavailable`, methodId, methodVersion, validationStatus=`fixture|unvalidated|validated` | expectedLiters, range, reason; unavailable implies both numeric fields null; available requires an expected value or a labeled usable range |
@@ -54,6 +55,8 @@ Minimum manual vehicle entry: display label and known fuel type, with optional k
 ## Price matching and range semantics
 
 Price lookup receives fuel selection, explicit price location and analysis time. Proposed initial price location is the origin area (D19); display that basis. Exact/nearby brand station → brand city/area → broader brand average → general fallback, considering only compatible and usable observations. No cross-fuel or undisclosed cross-brand substitution. Freshness is `fresh|stale|unknown` based on a versioned source-specific policy, not retrieval time alone. Freshness limits are open in D13.
+
+DOE PDF publications require a staging layer because they provide monitoring date intervals rather than timestamps. Preserve the source file hash, page, report period, monitoring interval and retrieval time before normalization. Treat blank, `None`, `No LFRO` and `0.00-0.00` as unavailable in the proposed adapter. See [the Cavite source spike](../docs/fuel-price-source-feasibility.md). D13 must define the timestamp and freshness policy before a staged record becomes a runtime `PriceObservation`.
 
 An exact observation carries `amountPhpPerLiter`. A source range carries `lowerPhpPerLiter` and `upperPhpPerLiter`; it must not be silently converted to an official midpoint. A point estimate requires a disclosed derived price method. Without one, expected cost is null while an explicitly labeled cost envelope may be available. No usable price produces cost unavailable, not PHP 0.
 
