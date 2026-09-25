@@ -18,12 +18,14 @@ Run `npm ci`, `npm run setup`, `npm run check`, then `npm run dev`. Open `http:/
 
 27 tests pass, plus lint, types, 11 fixture scenarios and build. The latest GitHub revision also passes Windows and Linux CI. See [acceptance evidence](acceptance-run.md) for desktop/360px, keyboard, delayed responses and actual Maps navigation. These are local fixture measurements, not live-provider performance guarantees.
 
-Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. A [Windows and Linux research-update run passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/35725879130), including the 27 application tests. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
+Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. The latest [Windows and Linux research-update run passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/36003629658), including the 27 application tests. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
 
 ## Research and remaining scope
 
 Cavite first; approximately 12 October 2026 submission; ML required. The [initial sample audit](ml-data-audit.md), [label/static follow-up](ml-label-feasibility.md), [proposed retained-window specification](ml-label-spec.md) and [two-week overlap audit](ml-two-week-audit.md) are complete. OEM-rate coverage remains PHEV-only. Strict ICE trim-complete coverage rises from 29 five-minute segments across 17 vehicles to 194 across 87 in week two; 197 of 307 vehicles appear in both weeks. This variability and overlap prevent independent-sample or Cavite claims. Next obtain adviser acceptance or pivot to a local measurement protocol; D08–D11 stay unresolved.
 
 The [DOE Cavite fuel-price source spike](fuel-price-source-feasibility.md) verifies weekly city/brand/grade range tables and a visually checked Imus example across two periods. It supports a reviewed dated-reference path, not live station pricing. D13 remains open for freshness, timestamp normalization, review ownership and ingestion cadence. No trained model or live provider is connected.
+
+The [Philippine vehicle source spike](vehicle-source-feasibility.md) maps Toyota Vios 1.3 XLE CVT and Mitsubishi Mirage GLX CVT evidence without inventing model years, grades or fuel economy. Both remain staging candidates; D03 and exact-year evidence block promotion to a real catalog.
 
 Physical mobile testing, participant consent/retention, verified email/recovery, hosting, live pricing/routing permissions, status/measurement collection and held-out ML evaluation remain future gates. Use fictional local accounts. Earlier foundation snapshots were documentation milestones; this work does not retroactively claim they were tested.

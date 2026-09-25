@@ -25,12 +25,13 @@ D01 and the scope updates below are confirmed by the user. The original table is
 - D08–D11 remain deferred. Reversible external-data inspection does not adopt VED or replace adviser acceptance of the claim, derivation, split and evaluation protocol.
 - Two current DOE Region IV-A price reports were visually inspected for Cavite. They support dated city-level brand/grade ranges, but contain no station identity, coordinates, machine-readable schema or time-of-day observation. D13 remains open.
 - The proposed DOE intake rule treats blank, `None`, `No LFRO` and `0.00-0.00` as unavailable; it preserves report period, monitoring interval, retrieval time, page and hash. This rule blocks zero-price arithmetic and does not interpret DOE's internal missing-value semantics.
+- Current Philippine manufacturer evidence was mapped for Toyota Vios 1.3 XLE CVT and Mitsubishi Mirage GLX CVT. It supports variant identity and several specifications, but exact participant model year and route-relevant fuel economy remain unsupported. D03 stays open and the fixture catalog is unchanged.
 
 | ID | Status | Decision or question | Proposed next step / evidence | Owner / needed by |
 |---|---|---|---|---|
 | D01 | Confirmed | School thesis prototype | User clarification on 2026-09-12 | Lead / now |
 | D02 | Open | Target city/corridor and vehicle classes | Select one area with inspectable route and price coverage; do not infer location from workspace timezone | Thesis team / M1 |
-| D03 | Open | Initial vehicles and source permission | Curate a small set of verified Philippine variants; record missing specs and source dates. Final count stays deferred | Data / M1 seed plan, M3 coverage |
+| D03 | Open | Initial vehicles and source permission | Two staging candidates and manufacturer sources are documented. Obtain exact-year applicability evidence, separately confirm participant/Cavite fit, and define review/reuse ownership before promoting either to the real catalog; final count stays deferred | Data + thesis team / M3 |
 | D04 | Proposed | One modular web application | Prefer shared typed boundaries and relational persistence; exact framework and hosting await constraints | Lead / M1 |
 | D05 | Open | Provider access, school budget and quotas | Test routing alternatives/traffic in target area, inspect billing and permitted storage; record a request budget | Data + thesis team / M1–M3 |
 | D06 | Proposed | Save at first explicit route selection for handoff, before redirect | Analyze returns an expiring analysis; handoff action creates/reuses a planned trip. Persist failure requires retry, never a false saved label | Lead + UX / before M2 implementation |

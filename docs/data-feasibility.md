@@ -32,7 +32,7 @@ Define the thesis question, fuel-measurement method, participant/vehicle scope, 
 ## Next validation experiments
 
 1. The Cavite DOE publication inspection is complete; see [fuel-price source feasibility](fuel-price-source-feasibility.md) for two reports, a visually checked Imus example, hashes and draft mapping rules. D13 still gates ingestion and freshness.
-2. Inspect two candidate vehicle variants from dated manufacturer evidence; identify whether year and fuel-economy inputs are actually supported. Deliver source-linked entries with unknown values retained as null.
+2. The two-candidate manufacturer review is complete; see [vehicle source feasibility](vehicle-source-feasibility.md). Exact model year and route-relevant fuel economy remain unsupported and null, so D03 still blocks real catalog promotion.
 3. With a configured provider account, run a small representative origin/destination set and record route counts, available traffic fields, request failures, latency and actual billed SKU. Account setup and paid requests are not yet performed.
 4. Build a field-by-field retention matrix for the chosen provider and account terms. Decide allowed saved-trip fields, expiry, deletion and refresh behavior before live-history writes.
 5. Test Maps handoff on desktop and mobile for current-location and remote origins. Confirm destination encoding, preview behavior and route differences without claiming completion detection.
