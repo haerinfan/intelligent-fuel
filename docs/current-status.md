@@ -26,6 +26,8 @@ Cavite first; approximately 12 October 2026 submission; ML required. The [initia
 
 The [DOE Cavite fuel-price source spike](fuel-price-source-feasibility.md) verifies weekly city/brand/grade range tables and a visually checked Imus example across two periods. It supports a reviewed dated-reference path, not live station pricing. D13 remains open for freshness, timestamp normalization, review ownership and ingestion cadence. No trained model or live provider is connected.
 
+The two Imus RON 95 rows are now represented by 22 [research staging records](../data/staging/README.md): 16 positive ranges and six unavailable blank brand cells. Every value, page, monitoring interval and file hash was independently rechecked, and `npm run prices:check` prevents zeros, reversed ranges, malformed dates, duplicate keys or incomplete review metadata. The application does not load these records; D13 still blocks runtime normalization.
+
 The [Philippine vehicle source spike](vehicle-source-feasibility.md) maps Toyota Vios 1.3 XLE CVT and Mitsubishi Mirage GLX CVT evidence without inventing model years, grades or fuel economy. Both remain staging candidates; D03 and exact-year evidence block promotion to a real catalog.
 
 The [adviser research gate](adviser-research-gate.md) now packages the next ML decision: select an external retained-window, local measured-trip, or external-ML-plus-local-usability track; then freeze the claim, measurement, grouping, split, baseline, metrics and governance rules. It is a review packet only. Participant collection, final model selection and accuracy reporting remain blocked.

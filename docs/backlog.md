@@ -8,7 +8,7 @@ Updated 25 September 2026: fixture journey implemented, targeting approximately 
 |---|---|---|
 | M1.1 Thesis scope | Partly complete | Cavite, one-month deadline and required ML confirmed; rubric/budget remain open |
 | M1.2 Environment | Complete locally | Reproducible setup/check/dev, SQLite migrations, maintained auth and local-only server |
-| M1.3 Data spike | Partly complete | Two-week ML audits, draft label specification, DOE Cavite price spike and two-candidate manufacturer-source review are complete; adviser acceptance/local-protocol pivot plus D03/D13 production decisions remain open |
+| M1.3 Data spike | Partly complete | Two-week ML audits, draft label specification, DOE Cavite price spike, 22 validated Imus staging records and two-candidate manufacturer-source review are complete; adviser acceptance/local-protocol pivot plus D03/D13 production decisions remain open |
 | M1.4 Fixture interfaces | Complete for M2 | Contract 0.2.0, manual unknowns/compatibility/integrity, lead ownership |
 | M2.1–M2.4 Fixture journey | Implemented and checked | See acceptance-run.md; no live provider or ML claim |
 | M2.5 Review | Independent static review complete | Three async races fixed with delayed-response tests; physical mobile and screen-reader review remain open |
@@ -36,7 +36,7 @@ Before writing application code, the lead must document the chosen stack and run
 | M2.4 Save, history and handoff | Backend + frontend | M2.1–3 | Transactional idempotent save, snapshot details, latest-five/full history; AC09–11, AC17 | Not started |
 | M2.5 Independent journey review | Reviewer + lead | M2.1–4 | Acceptance run evidence AC01–AC18; all material failures resolved | Not started |
 | M3.1 Live provider feasibility | Data | M1.1, M1.3 | Representative route requests, actual coverage/latency/quota evidence, attribution and retention matrix; D05/D14 resolved | Google field matrix complete with material persistence/ML mismatch; replacement selection and request evidence pending |
-| M3.2 Sourced catalog and pricing | Data/backend | M1.3; D03/D13 | Versioned evidence-backed records, grade compatibility, freshness and fallback behavior | Not started |
+| M3.2 Sourced catalog and pricing | Data/backend | M1.3; D03/D13 | Versioned evidence-backed records, grade compatibility, freshness and fallback behavior | Research staging validator and two Imus periods complete; runtime normalization blocked by D13 |
 | M3.3 Live adapter integration | Backend + reviewer | M2.5, M3.1–2 | Partial-data handling, budget limits, permitted snapshots and real mobile/desktop handoff checks | Not started |
 | M4.1 Return and history extensions | UX/backend | M2.5; D07 | Confirmation, history filters, optional measurement and explicit correction rules | Not started |
 | M4.2 Study data handling | Thesis team + lead | D11/D12 and M4.1 | Agreed consent/retention/deletion and measurement provenance before real participant collection | Not started |

@@ -87,6 +87,12 @@ The first curated DOE import is complete only when:
 6. The UI names DOE, city, monitoring dates, retrieval date and source mode without implying a station quote or live feed.
 7. A replacement report creates new immutable observations; saved plans keep their original permitted snapshot.
 
+## Reviewed staging result
+
+The two Imus rows are transcribed into `data/staging/doe-imus-ron95-2026-09.json`. An independent agent checked all 22 records against page 2 of both PDFs and recomputed both hashes on 25 September 2026. The result contains 16 positive brand/overall ranges and six verified blank cells for Phoenix, Total and PTT. `scripts/check-price-staging.ts` validates the schema, date containment, positive ordered ranges, unavailable-marker separation, reviewer metadata and duplicate keys.
+
+This completes transcription and second-review evidence for the bounded example. It does not complete D13 or authorize runtime normalization. Common price remains unavailable in both reports, and the application continues to use synthetic fixture pricing.
+
 ## Decision boundary
 
 This spike completes the “inspect one actual price publication” part of M1.3. D13 remains open for adviser/lead approval of the source, freshness policy, timestamp normalization, review ownership and update cadence. A live or automated adapter also needs a documented access policy and failure monitoring. The ML label, model, split and evaluation decisions remain deferred and independent of this price source.

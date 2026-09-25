@@ -33,6 +33,7 @@ D01 and the scope updates below are confirmed by the user. The original table is
 - The local-protocol draft separates pre-trip predictors from realized telemetry, requires a versioned direct measurement/derivation method and leakage-safe grouping, and blocks participant collection until consent, retention and deletion are approved.
 - No sample count, final model, baseline implementation, interval method or prediction claim was adopted. Adviser acceptance and a frozen protocol remain the next research gate.
 - The Google Routes field matrix found only an explicit indefinite place-ID exception and a non-EEA 30-day latitude/longitude caching permission. No positive durable exception was found for route metrics, traffic, geometry, raw responses or derived fuel/cost, and the general terms explicitly prohibit Google Maps Content in ML training/testing/validation. D14 remains open; do not enable this adapter for immutable history or ML without applicable written permission.
+- The two reviewed Imus RON 95 rows now have 22 machine-validated staging records. Six blank brand cells remain unavailable and all 16 populated/overall entries retain exact ranges. Independent transcription verification does not decide D13 freshness, timestamp normalization, update ownership or runtime promotion.
 
 | ID | Status | Decision or question | Proposed next step / evidence | Owner / needed by |
 |---|---|---|---|---|
