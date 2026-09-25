@@ -118,3 +118,5 @@ All values below are synthetic test values and not vehicle evidence or Philippin
 ## Persistence permission contract
 
 Before a live provider is enabled, map every retained field to source, allowed use, retention/expiry, attribution and deletion behavior. Include derived fields, not just raw payloads. A missing policy mapping blocks live persistence. Fixture mode uses owned synthetic data and may retain complete snapshots. This contract specifies desired structure, not a grant of provider storage rights.
+
+The 25 September 2026 [Google routing retention review](../docs/routing-provider-retention.md) found no positive durable-storage exception for route metrics, traffic, polylines, raw responses or derived fuel/cost under the reviewed default published terms, and an explicit prohibition on Google Maps Content in ML training/testing/validation. A Google Routes implementation is therefore blocked for this persistence/ML contract unless applicable written terms resolve those fields. Place IDs and temporary provider coordinates follow their documented separate rules; neither exception authorizes the rest of a route snapshot.
