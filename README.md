@@ -29,7 +29,7 @@ Start with these project records:
 - [Requirements](docs/requirements.md), [acceptance criteria](docs/acceptance-criteria.md) and [milestone backlog](docs/backlog.md)
 - [Architecture](docs/architecture.md), [data contracts](contracts/data-contracts.md), [stack decisions](docs/stack-decision.md) and [decision log](docs/decisions.md)
 - [Agent instructions](AGENTS.md) and [delegation workflow](docs/agent-workflow.md)
-- [One-month ML plan](docs/ml-plan.md), [dataset feasibility audit](docs/ml-data-audit.md), [proposed label specification](docs/ml-label-spec.md) and [two-week overlap audit](docs/ml-two-week-audit.md)
+- [One-month ML plan](docs/ml-plan.md), [dataset feasibility audit](docs/ml-data-audit.md), [proposed label specification](docs/ml-label-spec.md), [two-week overlap audit](docs/ml-two-week-audit.md) and [adviser research gate](docs/adviser-research-gate.md)
 
 ## Research boundary
 
