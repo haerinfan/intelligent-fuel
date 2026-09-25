@@ -19,6 +19,8 @@ Add a fictional catalog or manual vehicle, choose two resolved demo locations, c
 
 `npm run check` runs lint, types, 27 tests, fixture validation and compilation. `npm run build` then `npm start` runs the compiled server with the same `public` folder. `/health` reports fixture mode and unloaded ML. There is one local server and no external service setup.
 
+The check also validates the reviewed [DOE Imus price staging records](data/staging/README.md). They are research evidence only and are not loaded by the application.
+
 ## Work together
 
 Follow [contributor setup](CONTRIBUTING.md) and the [two-person workflow](docs/team-workflow.md): separate clones and credentials, one branch per task, explicit ownership of shared contracts, and reviewed pull requests. GitHub CI checks Linux and Windows. Do not mistake workflow files for confirmed remote branch protection; friend access and required-check settings must be completed in GitHub.
