@@ -38,6 +38,7 @@ Trip uniqueness is owner+analysis, enforced transactionally and by a database un
 |---|---|---|
 | ResolvedLocation | label, latitude, longitude, resolutionSource | providerPlaceId only when available and permitted; all fixture coordinates labeled synthetic |
 | VehicleVariant | id, market, brand, model, modelYear, variant, vehicleClass, provenance | displacementCc, transmission, fuelType, compatibleGrades, ratedKmPerLiter; source evidence must support the exact variant/year |
+| CatalogSourceRecord (staging proposal) | market, brand, model, variant, sourceName, sourceUrl, retrievedAt, reviewStatus | source version/date/hash; modelYear, vehicleClass, displacementCc, transmission, fuelType, compatibleGrades, ratedKmPerLiter and test method; unknown evidence remains null and cannot be normalized to VehicleVariant |
 | SavedVehicle | id, ownerId, entryMode (`catalog` or `manual`), displayName, specificationSnapshot, isDefault | catalogVariantId null for manual entry; at most one default per owner. No fabricated fallback economy |
 | FuelSelection | brandId, fuelType | gradeId nullable only if compatibility and quote semantics allow it; ambiguity must be resolved before price matching |
 | PriceObservation | id, fuelType, currency=`PHP`, unit=`PHP_PER_LITER`, geographicBasis, geographyLabel, observedAt, retrievedAt, provenance | brandId null only for disclosed general fallback; gradeId, stationId; amount exact or lower/upper range (see below) |
@@ -51,6 +52,8 @@ Trip uniqueness is owner+analysis, enforced transactionally and by a database un
 | FuelMeasurement | id, tripId, reportedLiters, reportedAt, methodDescription, verificationStatus=`unverified|accepted|rejected` | measurementStart/End, evidenceReference, protocolVersion, verifiedAt; default unverified, never automatically training eligible |
 
 Minimum manual vehicle entry: display label and known fuel type, with optional known year/variant/specs. Fuel prediction remains unavailable unless the active estimator explicitly supports those inputs. The manual form does not define the final ML feature set.
+
+Manufacturer research is staged separately from the runtime catalog. `CatalogSourceRecord` may retain a null model year and other unknowns while evidence is reviewed. Promotion to `VehicleVariant` requires exact-year/variant support for every populated field; a current sales page or brochure upload date cannot silently become `modelYear`. See [the Philippine vehicle source spike](../docs/vehicle-source-feasibility.md).
 
 ## Price matching and range semantics
 
