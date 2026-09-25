@@ -1,6 +1,6 @@
 # Milestone backlog
 
-Updated 24 September 2026: fixture journey implemented, targeting approximately 12 October submission. The original table records the initial planning baseline; the current progress table below supersedes its old statuses. Every task needs acceptance IDs and evidence; parallel work requires separate ownership.
+Updated 25 September 2026: fixture journey implemented, targeting approximately 12 October submission. The original table records the initial planning baseline; the current progress table below supersedes its old statuses. Every task needs acceptance IDs and evidence; parallel work requires separate ownership.
 
 ## Current progress
 
@@ -13,7 +13,7 @@ Updated 24 September 2026: fixture journey implemented, targeting approximately 
 | M2.1–M2.4 Fixture journey | Implemented and checked | See acceptance-run.md; no live provider or ML claim |
 | M2.5 Review | Independent static review complete | Three async races fixed with delayed-response tests; physical mobile and screen-reader review remain open |
 | Collaboration setup | Synced, CI verified | CONTRIBUTING, PR template, dependency updates and Windows/Linux CI on GitHub; invite and branch-rule enforcement remain pending |
-| Next research task | Adviser decision needed | Review ml-label-spec.md and ml-two-week-audit.md; accept/resolve the retained-window protocol, request more audits or pivot to consented local measurement |
+| Next research task | Adviser decision packet ready | Use adviser-research-gate.md to select the claim/data track and record the measurement, split, baseline, metric and governance gates; no participant collection or fitting yet |
 
 M3–M5 remain unimplemented. The completed demo does not satisfy the ML submission requirement by itself.
 
@@ -40,7 +40,7 @@ Before writing application code, the lead must document the chosen stack and run
 | M3.3 Live adapter integration | Backend + reviewer | M2.5, M3.1–2 | Partial-data handling, budget limits, permitted snapshots and real mobile/desktop handoff checks | Not started |
 | M4.1 Return and history extensions | UX/backend | M2.5; D07 | Confirmation, history filters, optional measurement and explicit correction rules | Not started |
 | M4.2 Study data handling | Thesis team + lead | D11/D12 and M4.1 | Agreed consent/retention/deletion and measurement provenance before real participant collection | Not started |
-| M5.1 Research protocol | Research + adviser | D16, feasibility evidence | Resolve D08–D11 with justified methods, baseline, data rights and held-out evaluation design | Not started |
+| M5.1 Research protocol | Research + adviser | D16, feasibility evidence | Resolve D08–D11 with justified methods, baseline, data rights and held-out evaluation design | Adviser packet drafted; approval and protocol freeze pending |
 | M5.2 Evaluation and report | Research + reviewer | M5.1 and approved measured dataset | Reproducible experiments, limitations, error/coverage and usability results; no unsupported accuracy claims | Not started |
 
 M3 source investigation can run beside M2 fixture implementation. M5 protocol design may start early; this schedule does not suggest delaying research planning until all screens are complete. Actual data collection depends on an agreed protocol and data handling. If the thesis requires a trained model, M2 alone is insufficient.

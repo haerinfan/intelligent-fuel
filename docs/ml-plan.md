@@ -2,6 +2,10 @@
 
 Planning baseline: 2026-09-12 to approximately 2026-10-12. Cavite is the initial deployment/study area; Philippine expansion is later. ML is required for the submitted prototype. Model family, final dataset, features, and interval method remain open today, but need early dated decisions rather than being deferred until the last milestone.
 
+## Recovery status, 25 September
+
+The September 15 data-route gate and the original September 19-25 training target were not met. The team inspected two chronological VED weeks and documented their limits, but has not accepted a label, split, baseline or final dataset and has not trained a model. The immediate recovery task is adviser review of `adviser-research-gate.md`: select the bounded claim/data track and freeze its measurement, split, metric and governance rules. The schedule below remains the original planning baseline, not a statement of completed work.
+
 ## September 13 progress
 
 An actual first-week VED file is now downloaded and audited outside Git. See [sample audit](ml-data-audit.md) and `scripts/audit_ved.py`. Fuel-rate sparsity/zeros prevent calling it training-ready. The data gate is still open; next investigate label semantics and static-feature mapping. No model, split or final dataset was selected.
@@ -12,7 +16,7 @@ By September 15, produce an actual inspected labeled-data sample, a rights/acces
 
 Candidate primary sources checked on September 12:
 
-- The authors' [Vehicle Energy Dataset repository](https://github.com/gsoh/VED) describes OBD-II time series from 383 personal cars in Ann Arbor, Michigan, including gasoline, hybrid and plug-in vehicles. It lists fuel rate in L/hr, timestamps, trip/vehicle IDs and static vehicle fields; the repository states Apache 2.0 licensing. This is a candidate for a measured-data experiment, not Cavite validation. Files have not been downloaded or audited here. Check fuel-rate missingness, measurement/derivation details, timestep gaps, license applicability, and static-feature availability before selection. [Original paper](https://arxiv.org/abs/1905.02081)
+- As recorded on September 12, the authors' [Vehicle Energy Dataset repository](https://github.com/gsoh/VED) describes OBD-II time series from 383 personal cars in Ann Arbor, Michigan, including gasoline, hybrid and plug-in vehicles. It lists fuel rate in L/hr, timestamps, trip/vehicle IDs and static vehicle fields; the repository states Apache 2.0 licensing. At that planning point files had not yet been downloaded or audited. Two weeks have since been audited outside Git; see `ml-data-audit.md`, `ml-label-spec.md` and `ml-two-week-audit.md`. The dataset remains a candidate for an external measured-data experiment, not Cavite validation.
 - [EPA/DOE fuel-economy downloads](https://www.fueleconomy.gov/feg/download.shtml) provide test-based vehicle fuel-economy data and downloadable files. These are potential rated-efficiency reference/benchmark data, not observed Cavite trip labels. Training a vehicle-rating model would answer a different question from predicting trip consumption.
 - [NREL Fleet DNA](https://www.nrel.gov/transportation/fleettest-fleet-dna.html) focuses on commercial medium/heavy-duty fleets. Its vehicle-domain mismatch makes it a lower-priority candidate for this passenger-car deadline.
 

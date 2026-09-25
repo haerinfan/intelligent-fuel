@@ -25,7 +25,13 @@ D01 and the scope updates below are confirmed by the user. The original table is
 - D08–D11 remain deferred. Reversible external-data inspection does not adopt VED or replace adviser acceptance of the claim, derivation, split and evaluation protocol.
 - Two current DOE Region IV-A price reports were visually inspected for Cavite. They support dated city-level brand/grade ranges, but contain no station identity, coordinates, machine-readable schema or time-of-day observation. D13 remains open.
 - The proposed DOE intake rule treats blank, `None`, `No LFRO` and `0.00-0.00` as unavailable; it preserves report period, monitoring interval, retrieval time, page and hash. This rule blocks zero-price arithmetic and does not interpret DOE's internal missing-value semantics.
-- Current Philippine manufacturer evidence was mapped for Toyota Vios 1.3 XLE CVT and Mitsubishi Mirage GLX CVT. It supports variant identity and several specifications, but exact participant model year and route-relevant fuel economy remain unsupported. D03 stays open and the fixture catalog is unchanged.
+- Current Philippine manufacturer evidence was mapped for Toyota Vios 1.3 XLE CVT and Mitsubishi Mirage GLX CVT. It supports variant identity and several specifications, but exact catalog model-year applicability and route-relevant fuel economy remain unsupported. Participant/Cavite fit is a separate later check. D03 stays open and the fixture catalog is unchanged.
+
+## Research preparation update, 25 September 2026
+
+- `adviser-research-gate.md` turns D08-D12 and the research part of D16 into an explicit review checklist. It offers three bounded tracks without selecting one: external retained windows, locally measured trips, or external ML with local usability evidence.
+- The local-protocol draft separates pre-trip predictors from realized telemetry, requires a versioned direct measurement/derivation method and leakage-safe grouping, and blocks participant collection until consent, retention and deletion are approved.
+- No sample count, final model, baseline implementation, interval method or prediction claim was adopted. Adviser acceptance and a frozen protocol remain the next research gate.
 
 | ID | Status | Decision or question | Proposed next step / evidence | Owner / needed by |
 |---|---|---|---|---|

@@ -1,6 +1,6 @@
 # Current implementation status
 
-Updated 24 September 2026. This page supersedes historical foundation-only statements. The fixture journey is implemented and synced to GitHub; the thesis and live/ML validation are not complete.
+Updated 25 September 2026. This page supersedes historical foundation-only statements. The fixture journey is implemented and synced to GitHub; the thesis and live/ML validation are not complete.
 
 ## Ready locally
 
@@ -18,7 +18,7 @@ Run `npm ci`, `npm run setup`, `npm run check`, then `npm run dev`. Open `http:/
 
 27 tests pass, plus lint, types, 11 fixture scenarios and build. The latest GitHub revision also passes Windows and Linux CI. See [acceptance evidence](acceptance-run.md) for desktop/360px, keyboard, delayed responses and actual Maps navigation. These are local fixture measurements, not live-provider performance guarantees.
 
-Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. The latest [Windows and Linux research-update run passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/36003629658), including the 27 application tests. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
+Read [CONTRIBUTING](../CONTRIBUTING.md) and [team workflow](team-workflow.md). CI, a PR template and reviewed dependency-update configuration are on GitHub. The latest [Windows and Linux vehicle-source update run passed](https://github.com/haerinfan/intelligent-fuel/actions/runs/36077441015), including the 27 application tests. Friend access needs their exact GitHub username and accepted invitation. Branch protection is a remote setting, not established by these files.
 
 ## Research and remaining scope
 
@@ -27,5 +27,7 @@ Cavite first; approximately 12 October 2026 submission; ML required. The [initia
 The [DOE Cavite fuel-price source spike](fuel-price-source-feasibility.md) verifies weekly city/brand/grade range tables and a visually checked Imus example across two periods. It supports a reviewed dated-reference path, not live station pricing. D13 remains open for freshness, timestamp normalization, review ownership and ingestion cadence. No trained model or live provider is connected.
 
 The [Philippine vehicle source spike](vehicle-source-feasibility.md) maps Toyota Vios 1.3 XLE CVT and Mitsubishi Mirage GLX CVT evidence without inventing model years, grades or fuel economy. Both remain staging candidates; D03 and exact-year evidence block promotion to a real catalog.
+
+The [adviser research gate](adviser-research-gate.md) now packages the next ML decision: select an external retained-window, local measured-trip, or external-ML-plus-local-usability track; then freeze the claim, measurement, grouping, split, baseline, metrics and governance rules. It is a review packet only. Participant collection, final model selection and accuracy reporting remain blocked.
 
 Physical mobile testing, participant consent/retention, verified email/recovery, hosting, live pricing/routing permissions, status/measurement collection and held-out ML evaluation remain future gates. Use fictional local accounts. Earlier foundation snapshots were documentation milestones; this work does not retroactively claim they were tested.
