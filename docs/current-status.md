@@ -30,4 +30,6 @@ The [Philippine vehicle source spike](vehicle-source-feasibility.md) maps Toyota
 
 The [adviser research gate](adviser-research-gate.md) now packages the next ML decision: select an external retained-window, local measured-trip, or external-ML-plus-local-usability track; then freeze the claim, measurement, grouping, split, baseline, metrics and governance rules. It is a review packet only. Participant collection, final model selection and accuracy reporting remain blocked.
 
+The [Google routing retention review](routing-provider-retention.md) completes a field matrix for one live-provider candidate. Under the reviewed default published non-EEA terms, only place IDs have an indefinite-storage exception and returned coordinates have a 30-day caching exception; durable route metrics/geometry and derived fuel/cost remain blocked without positive permission. Google Maps Content is explicitly excluded from ML training, testing and validation. D05/D14 remain open and no live adapter is enabled.
+
 Physical mobile testing, participant consent/retention, verified email/recovery, hosting, live pricing/routing permissions, status/measurement collection and held-out ML evaluation remain future gates. Use fictional local accounts. Earlier foundation snapshots were documentation milestones; this work does not retroactively claim they were tested.

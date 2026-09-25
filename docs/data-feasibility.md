@@ -34,10 +34,12 @@ Define the thesis question, fuel-measurement method, participant/vehicle scope, 
 1. The Cavite DOE publication inspection is complete; see [fuel-price source feasibility](fuel-price-source-feasibility.md) for two reports, a visually checked Imus example, hashes and draft mapping rules. D13 still gates ingestion and freshness.
 2. The two-candidate manufacturer review is complete; see [vehicle source feasibility](vehicle-source-feasibility.md). Exact model year and route-relevant fuel economy remain unsupported and null, so D03 still blocks real catalog promotion.
 3. With a configured provider account, run a small representative origin/destination set and record route counts, available traffic fields, request failures, latency and actual billed SKU. Account setup and paid requests are not yet performed.
-4. Build a field-by-field retention matrix for the chosen provider and account terms. Decide allowed saved-trip fields, expiry, deletion and refresh behavior before live-history writes.
+4. The Google candidate's field matrix is complete and blocks live persistence under the reviewed default terms. Repeat the review for the selected provider's exact account/jurisdiction terms, then decide allowed saved-trip fields, expiry, deletion and refresh behavior before live-history writes.
 5. Test Maps handoff on desktop and mobile for current-location and remote origins. Confirm destination encoding, preview behavior and route differences without claiming completion detection.
 6. Agree an advisor-reviewed measurement protocol and feasible sample before finalizing ML or accuracy targets. Document limits if the thesis can only evaluate workflow usability rather than prediction quality.
 
 ## Main risks
 
 The critical risks are inadequate measured fuel labels, unsupported exact vehicle variants, price granularity mismatch, provider retention restrictions, and navigation diverging from the analyzed route. Each can be exposed early through the experiments above. None requires expanding the prototype into a nationwide vehicle database, live station-price aggregator, navigation engine, or microservice system.
+
+The Google candidate's initial [field-level retention review](routing-provider-retention.md) is complete. It found a material mismatch with immutable route history and ML use under the reviewed default published terms. Exact account/jurisdiction terms, a permitted replacement provider and representative Cavite requests remain untested.

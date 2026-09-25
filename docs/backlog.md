@@ -35,7 +35,7 @@ Before writing application code, the lead must document the chosen stack and run
 | M2.3 Planner and results | UX/frontend | M1.4; integrates M2.1–2 | Responsive complete inputs/comparison flow; AC02–08, AC12–14, AC16 | Not started |
 | M2.4 Save, history and handoff | Backend + frontend | M2.1–3 | Transactional idempotent save, snapshot details, latest-five/full history; AC09–11, AC17 | Not started |
 | M2.5 Independent journey review | Reviewer + lead | M2.1–4 | Acceptance run evidence AC01–AC18; all material failures resolved | Not started |
-| M3.1 Live provider feasibility | Data | M1.1, M1.3 | Representative route requests, actual coverage/latency/quota evidence, attribution and retention matrix; D05/D14 resolved | Not started |
+| M3.1 Live provider feasibility | Data | M1.1, M1.3 | Representative route requests, actual coverage/latency/quota evidence, attribution and retention matrix; D05/D14 resolved | Google field matrix complete with material persistence/ML mismatch; replacement selection and request evidence pending |
 | M3.2 Sourced catalog and pricing | Data/backend | M1.3; D03/D13 | Versioned evidence-backed records, grade compatibility, freshness and fallback behavior | Not started |
 | M3.3 Live adapter integration | Backend + reviewer | M2.5, M3.1–2 | Partial-data handling, budget limits, permitted snapshots and real mobile/desktop handoff checks | Not started |
 | M4.1 Return and history extensions | UX/backend | M2.5; D07 | Confirmation, history filters, optional measurement and explicit correction rules | Not started |
