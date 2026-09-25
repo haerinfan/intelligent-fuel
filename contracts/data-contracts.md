@@ -2,6 +2,8 @@
 
 Version 0.2.0, implemented fixture API. Runtime schemas are in `src/contracts/index.ts`; handlers are in `src/trip-api.ts`. Changes go through the lead and decision log. Statistical method and predictor features remain deferred. The fixture implementation notes below supersede the original proposed endpoint names.
 
+Research-only DOE staging records are validated separately by `scripts/check-price-staging.ts`; they are not part of the runtime API or database.
+
 ## Implemented fixture interface
 
 All `/api/v1` data endpoints require a verified cookie session; mutations require the configured same origin. Ownership comes from the session. Request objects reject unexpected fields.
@@ -42,7 +44,7 @@ Trip uniqueness is owner+analysis, enforced transactionally and by a database un
 | SavedVehicle | id, ownerId, entryMode (`catalog` or `manual`), displayName, specificationSnapshot, isDefault | catalogVariantId null for manual entry; at most one default per owner. No fabricated fallback economy |
 | FuelSelection | brandId, fuelType | gradeId nullable only if compatibility and quote semantics allow it; ambiguity must be resolved before price matching |
 | PriceObservation | id, fuelType, currency=`PHP`, unit=`PHP_PER_LITER`, geographicBasis, geographyLabel, observedAt, retrievedAt, provenance | brandId null only for disclosed general fallback; gradeId, stationId; amount exact or lower/upper range (see below) |
-| SourcePriceRecord (staging proposal) | sourceName, sourceUrl, sourceFileSha256, sourcePage, reportPeriodStart/End, monitoredFrom/ThroughDate, retrievedAt, province, cityMunicipality, fuelType, gradeId, reviewStatus | brandId; lower/upper/common PHP per liter; sourceMarker; reviewer metadata. This record cannot enter cost arithmetic until visually verified and normalized under D13 |
+| SourcePriceRecord (research staging) | sourceName, sourceUrl, sourceFileSha256, sourcePage, reportPeriodStart/End, monitoredFrom/ThroughDate, retrievedAt, province, cityMunicipality, fuelType, gradeId, reviewStatus | brandId; lower/upper/common PHP per liter; sourceMarker; reviewer metadata. Versioned examples are schema-checked in `data/staging`; they cannot enter cost arithmetic until visually verified and normalized under D13 |
 | RouteCandidate | id, label, distanceMeters, durationSeconds, trafficStatus, calculatedAt, provenance | geometry/previewRef and providerRouteId ephemeral unless retention permits; trafficStatus=`aware|unaware|unknown` |
 | SelectedPriceSnapshot | observation (embedded PriceObservation), freshness, freshnessPolicyVersion, selectionPolicyVersion, matchedAt | An immutable copy of quote values, geographic basis, provenance and dates, not a live ID lookup |
 | FuelEstimate | status=`available|unavailable`, methodId, methodVersion, validationStatus=`fixture|unvalidated|validated` | expectedLiters, range, reason; unavailable implies both numeric fields null; available requires an expected value or a labeled usable range |
