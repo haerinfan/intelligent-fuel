@@ -1,6 +1,6 @@
 # Intelligent Fuel
 
-A Cavite-first school thesis prototype for comparing trip fuel use and cost, saving plans, and opening Google Maps. The first local browser journey is implemented with clearly labeled synthetic data. **No live providers or trained ML model are connected yet.** Target submission is approximately 12 October 2026; machine learning remains required. The [DOE Cavite price-source spike](docs/fuel-price-source-feasibility.md) defines a reviewed dated-reference path without presenting it as live station data.
+A Cavite-first school thesis prototype for comparing trip fuel use and cost, saving plans, and opening Google Maps. The first local browser journey is implemented with clearly labeled synthetic data. **No live providers or trained ML model are connected yet.** Target submission is approximately 12 October 2026; machine learning remains required. Source spikes cover a reviewed [DOE Cavite price path](docs/fuel-price-source-feasibility.md) and [two Philippine vehicle candidates](docs/vehicle-source-feasibility.md) without presenting either as production-ready.
 
 ## Start locally
 
